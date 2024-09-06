@@ -8,7 +8,8 @@ import mx.tec.appequipo4.R
 
 @Composable
 fun NavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "main") {
+    NavHost(navController = navController, startDestination = "main" +
+            "") {
         composable("signup") {
             SignUpScreen(navController = navController)
         }
@@ -20,6 +21,15 @@ fun NavGraph(navController: NavHostController) {
         }
         composable("login") {
             LoginScreen(navController = navController)
+        }
+        composable("conocenos") {
+            ConocenosScreen(navController = navController)
+        }
+        composable("historial") {
+            HistorialCompras(navController = navController)
+        }
+        composable("menu_principal") {
+            MenuPrincipal(navController = navController)
         }
         composable("producto_regulares") {
             DetalleProducto(
@@ -37,6 +47,18 @@ fun NavGraph(navController: NavHostController) {
                 descripcion = "Toalla reutilizable\nIdeal para flujo abundante\nHecha a mano con telas de algodón\nMedidas: 29 x 8 cms.",
                 precio = "$180.00 MXN",
                 imagenId = R.drawable.image_nocturnas
+            )
+        }
+        composable("detalle_kit6") {
+            DetalleHistorial(
+                navController = navController,
+                fecha = "21 de junio",
+                nombreProducto = "Kit 6 piezas Ayni",
+                cantidad = 1,
+                precio = "$580.00 MXN",
+                imagenId = R.drawable.image_kit5,
+                instruccionesDevolucion = "Para devolver el producto contacta al número 5512345678. No todos los productos son elegibles para devolución.",
+                rutaCompra = "producto_regulares"
             )
         }
     }

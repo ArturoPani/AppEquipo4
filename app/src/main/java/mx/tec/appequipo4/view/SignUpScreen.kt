@@ -11,17 +11,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun SignUpScreen(navController: NavController) {
     val scrollState = rememberScrollState()
+
 
     Column(
         modifier = Modifier
@@ -30,6 +36,19 @@ fun SignUpScreen(navController: NavController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Volver",
+                modifier = Modifier
+                    .size(32.dp)
+                    .clickable { navController.popBackStack() } // Volver a la página anterior
+            )
+        }
         // Fila para los logos y el título en la parte superior
         Row(
             modifier = Modifier
@@ -68,6 +87,7 @@ fun SignUpScreen(navController: NavController) {
         // Botón de registro
         AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63)) {
             // Acciones al hacer clic en Registrarse
+            navController.navigate("login")
         }
 
         Spacer(modifier = Modifier.height(16.dp))

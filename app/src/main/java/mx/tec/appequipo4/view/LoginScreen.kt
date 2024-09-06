@@ -2,6 +2,7 @@ package mx.tec.appequipo4.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,6 +48,13 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
         ) {
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Volver",
+                modifier = Modifier
+                    .size(32.dp)
+                    .clickable { navController.popBackStack() } // Volver a la página anterior
+            )
 
             Spacer(modifier = Modifier.height(48.dp))
 
@@ -79,6 +90,7 @@ fun LoginScreen(navController: NavController) {
                 backgroundColor = Color(0xFFE76141)
             ) {
                 //TODO: Acciones al hacer clic en Iniciar Sesion
+                navController.navigate("menu_principal")
             }
 
             Spacer(Modifier.weight(1f))

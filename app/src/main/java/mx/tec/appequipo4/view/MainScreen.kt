@@ -49,7 +49,7 @@ fun MainScreen(navController: NavController) {
         }
         AppButton(text = "INVITADO", backgroundColor = Color(0xFF2196F3)) {
             // Acción para usuario invitado
-            navController.navigate("catalogo")
+            navController.navigate("menu_principal")
         }
         Spacer(modifier = Modifier.height(20.dp))
     }

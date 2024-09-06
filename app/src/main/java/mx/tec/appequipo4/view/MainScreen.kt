@@ -41,6 +41,7 @@ fun MainScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
         AppButton(text = "INICIAR SESIÓN", backgroundColor = Color(0xFFFF5722)) {
             // Acción de iniciar sesión
+            navController.navigate("login")
         }
         AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63)) {
             // Navega a la pantalla de SignUp
@@ -48,6 +49,7 @@ fun MainScreen(navController: NavController) {
         }
         AppButton(text = "INVITADO", backgroundColor = Color(0xFF2196F3)) {
             // Acción para usuario invitado
+            navController.navigate("catalogo")
         }
         Spacer(modifier = Modifier.height(20.dp))
     }

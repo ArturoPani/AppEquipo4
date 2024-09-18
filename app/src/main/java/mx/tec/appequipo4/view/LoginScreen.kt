@@ -33,15 +33,13 @@ import mx.tec.appequipo4.R
 @Composable
 fun LoginScreen(navController: NavController) {
     val scrollState = rememberScrollState()
+    val backgroundColor = Color(0xFFFEE0D7)
+
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(Color.White, Color(0xFFFEE0D7))
-                )
-            )
+            .background(backgroundColor)
     ) {
 
         Column(
@@ -60,21 +58,14 @@ fun LoginScreen(navController: NavController) {
 
             //Logo ZAZIL
             Image(
-                painter = painterResource(id = R.drawable.img),
-                contentDescription = "Logo Zazil con nombre",
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo Zazil",
                 modifier = Modifier
                     .size(270.dp)
                     .align(Alignment.CenterHorizontally)
                     .padding(vertical = 16.dp)
             )
-
-            Text(
-                text = "Bienvenida",
-                color = Color.Black,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+            AppTitle(modifier = Modifier.align(Alignment.CenterHorizontally))
 
             // Campo de texto para el usuario
             InputField(label = "E-mail")
@@ -87,29 +78,24 @@ fun LoginScreen(navController: NavController) {
             // Botón de Login
             AppButton(
                 text = "INICIAR SESION",
-                backgroundColor = Color(0xFFE76141)
+                backgroundColor = Color(0xFFE91E63)
             ) {
                 //TODO: Acciones al hacer clic en Iniciar Sesion
                 navController.navigate("menu_principal")
             }
-
-            Spacer(Modifier.weight(1f))
-            Image(
-                painter = painterResource(id = R.drawable.logo_signup1),
-                contentDescription = "Logo Zazil con nombre",
-                modifier = Modifier
-                    .size(64.dp)
-                    .align(Alignment.CenterHorizontally)
-                    .padding(vertical = 8.dp)
-            )
-
-            Text(
-                text = "Aviso de privacidad",
-                color = Color.Gray,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(bottom = 16.dp)
-            )
+                Text(
+                    text = "Aviso de privacidad",
+                    fontSize = 12.sp,
+                    color = Color.Black,
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.End)
+                        .clickable {
+                            // Navegar a la página de aviso de privacidad
+                            navController.navigate("aviso_privacidad")
+                        },
+                    textAlign = TextAlign.Right
+                )
         }
     }
 }

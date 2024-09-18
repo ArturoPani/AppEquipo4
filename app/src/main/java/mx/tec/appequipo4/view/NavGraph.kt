@@ -31,6 +31,9 @@ fun NavGraph(navController: NavHostController) {
         composable("menu_principal") {
             MenuPrincipal(navController = navController)
         }
+        composable(route = "aviso_privacidad") {
+            AvisoPrivacidadScreen(navController = navController)
+        }
         composable("producto_regulares") {
             DetalleProducto(
                 navController = navController,

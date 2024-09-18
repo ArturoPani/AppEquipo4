@@ -26,7 +26,7 @@ fun InputField(
 
     Column(modifier = modifier
         .padding(vertical = 8.dp, horizontal = 32.dp)) {
-        Text(text = label, color = Color.Black)
+        Text(text = label, color = Color.Black, fontSize = 18.sp)
         BasicTextField(
             value = textState.value,
             onValueChange = { textState.value = it },

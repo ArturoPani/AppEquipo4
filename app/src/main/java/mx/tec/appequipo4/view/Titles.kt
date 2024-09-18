@@ -20,7 +20,7 @@ fun AppTitle(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = "ZAZIL",
-            fontSize = 32.sp,
+            fontSize = 70.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center)
         )

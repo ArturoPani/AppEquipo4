@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -20,6 +21,8 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
@@ -27,8 +30,14 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 @Composable
 fun SignUpScreen(navController: NavController) {
     val scrollState = rememberScrollState()
+    val backgroundColor = Color(0xFFFEE0D7)
 
 
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -49,28 +58,7 @@ fun SignUpScreen(navController: NavController) {
                     .clickable { navController.popBackStack() } // Volver a la página anterior
             )
         }
-        // Fila para los logos y el título en la parte superior
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.logo_signup1),
-                contentDescription = "Logo Izquierdo",
-                modifier = Modifier.size(80.dp)
-            )
-
-            AppTitle(modifier = Modifier.weight(1f))
-
-            Image(
-                painter = painterResource(id = R.drawable.img),
-                contentDescription = "Logo Derecho",
-                modifier = Modifier.size(80.dp)
-            )
-        }
+        AppTitle(modifier = Modifier.align(Alignment.CenterHorizontally))
 
         // Campos de texto
         InputField(label = "Nombre")
@@ -92,6 +80,18 @@ fun SignUpScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Aviso de privacidad", color = Color.Gray)
+        Text(
+            text = "Aviso de privacidad",
+            fontSize = 12.sp,
+            color = Color.Black,
+            modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.End)
+                .clickable {
+                    // Navegar a la página de aviso de privacidad
+                    navController.navigate("aviso_privacidad")
+                },
+            textAlign = TextAlign.Right
+        )
     }
 }

@@ -28,28 +28,29 @@ fun MainScreen(navController: NavController) {
             .background(backgroundColor)
             .padding(vertical = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(40.dp))
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "App Logo",
-            modifier = Modifier.size(150.dp)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        AppTitle()
-        Spacer(modifier = Modifier.height(16.dp))
-        AppButton(text = "INICIAR SESIÓN", backgroundColor = Color(0xFFFF5722)) {
-            // Acción de iniciar sesión
-            navController.navigate("login")
-        }
-        AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63)) {
-            // Navega a la pantalla de SignUp
-            navController.navigate("signup") //Borrar cuando se implemente el model y view model
-        }
-        AppButton(text = "INVITADO", backgroundColor = Color(0xFF2196F3)) {
-            // Acción para usuario invitado
-            navController.navigate("menu_principal")
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "App Logo",
+                modifier = Modifier.size(300.dp)
+            )
+            AppTitle()
+        //Botones de incio de sesión
+        Column {
+            Spacer(modifier = Modifier.height(16.dp))
+            AppButton(text = "INICIAR SESIÓN", backgroundColor = Color(0xFFE91E63)) {
+                // Acción de iniciar sesión
+                navController.navigate("login")
+            }
+            AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63)) {
+                // Navega a la pantalla de SignUp
+                navController.navigate("signup") //Borrar cuando se implemente el model y view model
+            }
+            AppButton(text = "INVITADO", backgroundColor = Color(0xFFE91E63)) {
+                // Acción para usuario invitado
+                navController.navigate("menu_principal")
+            }
         }
         Spacer(modifier = Modifier.height(20.dp))
     }

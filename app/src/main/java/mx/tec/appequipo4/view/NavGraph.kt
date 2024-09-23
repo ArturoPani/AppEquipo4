@@ -8,10 +8,8 @@ import mx.tec.appequipo4.R
 
 @Composable
 fun NavGraph(navController: NavHostController) {
-
     NavHost(navController = navController, startDestination = "main" +
             "") {
-
         composable("signup") {
             SignUpScreen(navController = navController)
         }
@@ -23,9 +21,6 @@ fun NavGraph(navController: NavHostController) {
         }
         composable("login") {
             LoginScreen(navController = navController)
-            }
-        composable("home") {
-            HomeScreen(navController = navController)
         }
         composable("conocenos") {
             ConocenosScreen(navController = navController)

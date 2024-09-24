@@ -23,6 +23,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 
+/**
+ * Pantalla de conocenos donde aparece la información de la fundación (misión, visión, etc.)
+ * @authors Arturo Paniagua
+ */
+
 @Composable
 fun ConocenosScreen(navController: NavController) {
     val backgroundColor = Color(0xFFFEE0D7)
@@ -61,7 +66,7 @@ fun ConocenosScreen(navController: NavController) {
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
-        Text(
+        Text( // Información de la presidenta de la formación
             text = "\"Juntos, iluminaremos el camino hacia una generación libre, informada y empoderada.\" \n ¡Libertad para Todas! \n\n Virydiana Fernández \n Presidenta Fundación Todas Brillamos AC",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
@@ -88,7 +93,7 @@ fun ConocenosScreen(navController: NavController) {
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
-        Text(
+        Text( //Información de Zazil
             text = "Zazil es una marca comprometida con el bienestar de las mujeres y el cuidado del medio ambiente. Su misión es proporcionar soluciones innovadoras y sostenibles para el período menstrual. ¿Cómo lo hacen? A través de la creación de toallas femeninas reutilizables.",
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
@@ -97,7 +102,7 @@ fun ConocenosScreen(navController: NavController) {
             modifier = Modifier.padding(horizontal = 16.dp)
         )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(
+        Text( //Frase 
             text = "\"Cambiando el Mundo, un Ciclo a la Vez.\"",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,

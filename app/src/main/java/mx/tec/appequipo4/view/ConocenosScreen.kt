@@ -2,9 +2,13 @@ package mx.tec.appequipo4.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,9 +36,23 @@ fun ConocenosScreen(navController: NavController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        AppTitle()
+        // Ajustar el ícono de regreso para que se vea correctamente
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,  // Cambiar a Icons.Filled.ArrowBack
+                contentDescription = "Volver",
+                modifier = Modifier
+                    .size(32.dp)
+                    .clickable { navController.popBackStack() } // Volver a la página anterior
+            )
 
-        // Primera sección: Presidenta y declaración en una sola columna
+            AppTitle()
+        }
         Image(
             painter = painterResource(id = R.drawable.img_1), // Imagen de la presidenta
             contentDescription = "Virydiana Fernández",

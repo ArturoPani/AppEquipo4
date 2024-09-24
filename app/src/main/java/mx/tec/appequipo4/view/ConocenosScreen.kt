@@ -2,9 +2,13 @@ package mx.tec.appequipo4.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,6 +36,14 @@ fun ConocenosScreen(navController: NavController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Icon(
+            imageVector = Icons.Default.ArrowBack,
+            contentDescription = "Volver",
+            modifier = Modifier
+                .size(32.dp)
+                .clickable { navController.popBackStack() } // Volver a la página anterior
+        )
+
         AppTitle()
 
         // Primera sección: Presidenta y declaración en una sola columna

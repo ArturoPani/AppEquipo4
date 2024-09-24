@@ -36,17 +36,23 @@ fun ConocenosScreen(navController: NavController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
-            contentDescription = "Volver",
+        // Ajustar el ícono de regreso para que se vea correctamente
+        Row(
             modifier = Modifier
-                .size(32.dp)
-                .clickable { navController.popBackStack() } // Volver a la página anterior
-        )
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,  // Cambiar a Icons.Filled.ArrowBack
+                contentDescription = "Volver",
+                modifier = Modifier
+                    .size(32.dp)
+                    .clickable { navController.popBackStack() } // Volver a la página anterior
+            )
 
-        AppTitle()
-
-        // Primera sección: Presidenta y declaración en una sola columna
+            AppTitle()
+        }
         Image(
             painter = painterResource(id = R.drawable.img_1), // Imagen de la presidenta
             contentDescription = "Virydiana Fernández",

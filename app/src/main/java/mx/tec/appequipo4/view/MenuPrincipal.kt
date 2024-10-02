@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -50,9 +51,11 @@ fun MenuPrincipal(navController: NavController) {
 
             // Botón para navegar al Catálogo
             Column {
+                val color = Color(0xFFE91E63)
                 AppButton(
                     text = "Catálogo",
                     backgroundColor = Color(0xFFE91E63),
+                    modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("catalogo") }
                 )
 
@@ -60,6 +63,7 @@ fun MenuPrincipal(navController: NavController) {
                 AppButton(
                     text = "Historial de Compras",
                     backgroundColor = Color(0xFFE91E63),
+                    modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("historial") }
                 )
 
@@ -67,6 +71,7 @@ fun MenuPrincipal(navController: NavController) {
                 AppButton(
                     text = "Conócenos",
                     backgroundColor = Color(0xFFE91E63),
+                    modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("conocenos") }
                 )
 
@@ -74,6 +79,7 @@ fun MenuPrincipal(navController: NavController) {
                 AppButton(
                     text = "Regresar",
                     backgroundColor = Color(0xFFE91E63), // Color púrpura, por ejemplo
+                    modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("main") }
                 )
             }

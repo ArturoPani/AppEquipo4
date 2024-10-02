@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -75,10 +76,12 @@ fun LoginScreen(navController: NavController) {
                 isPassword = true
             )
 
+            val color = Color(0xFFE91E63)
             // Botón de Login
             AppButton(
                 text = "INICIAR SESION",
-                backgroundColor = Color(0xFFE91E63)
+                backgroundColor = Color(0xFFE91E63),
+                modifier = Modifier.padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
             ) {
                 //TODO: Acciones al hacer clic en Iniciar Sesion
                 navController.navigate("menu_principal")

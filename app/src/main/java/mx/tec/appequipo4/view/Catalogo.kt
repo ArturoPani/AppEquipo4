@@ -1,6 +1,7 @@
 
 package mx.tec.appequipo4.view
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -23,9 +24,11 @@ import mx.tec.appequipo4.R
 // Composable para un producto
 @Composable
 fun Producto(navController: NavController, nombre: String, precio: String, imagenId: Int, rutaProducto: String) {
+    val backgroundColor = Color(0xFFFFECB3)
     Column(
         modifier = Modifier
             .padding(8.dp)
+            .background(backgroundColor)
             .clickable {
                 // Navega a la pantalla de detalles del producto
                 // Agregar cuando se implemente la pantalla de ruta de producto
@@ -47,12 +50,14 @@ fun Producto(navController: NavController, nombre: String, precio: String, image
 // Composable para mostrar el catálogo
 @Composable
 fun Catalogo(navController: NavController) {
+    val backgroundColor = Color(0xFFFEE0D7)
     val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
+            .background(backgroundColor)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

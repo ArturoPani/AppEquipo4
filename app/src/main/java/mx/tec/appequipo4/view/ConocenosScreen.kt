@@ -26,9 +26,10 @@ import mx.tec.appequipo4.R
 
 /**
  * Pantalla de conocenos donde aparece la información de la fundación (misión, visión, etc.)
- * @authors Arturo Paniagua
+ *
  */
 
+@Preview(showBackground = true, widthDp = 420, heightDp = 600)
 
 @Composable
 fun ConocenosScreen(navController: NavController) {

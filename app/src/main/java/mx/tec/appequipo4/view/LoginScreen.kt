@@ -31,11 +31,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 
+/**
+ * Pantalla que muestra el login de la aplicación
+ */
+
 @Composable
 fun LoginScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     val backgroundColor = Color(0xFFFEE0D7)
-
 
     Box(
         modifier = Modifier

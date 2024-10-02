@@ -19,6 +19,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 
+/**
+ * Pantalla que muestra el menú principal de la aplicación, incluye los botones para navegar al catalogo, historial de compras, conócenos y salir.
+ */
+
 @Composable
 fun MenuPrincipal(navController: NavController) {
     // Fondo degradado

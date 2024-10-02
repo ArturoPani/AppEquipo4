@@ -22,7 +22,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 
-// Composable para un producto
+/**
+ * Pantalla de catálogo donde se muestran los productos disponibles
+ */
+
 @Composable
 fun Producto(navController: NavController, nombre: String, precio: String, imagenId: Int, rutaProducto: String) {
     val backgroundColor = Color(0xFFFFECB3)

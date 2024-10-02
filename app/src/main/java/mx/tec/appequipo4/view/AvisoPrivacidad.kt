@@ -22,6 +22,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import mx.tec.appequipo4.R
 
+/**
+ * Pantalla donde se muestra el aviso de privacidad de la fundación, junto con la empresa
+ */
+
 @Composable
 fun AvisoPrivacidadScreen(navController: NavController) {
     val backgroundColor = Color(0xFFFEE0D7)

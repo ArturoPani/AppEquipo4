@@ -29,6 +29,10 @@ import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
+/**
+ * Pantalla de registro de usuario.
+ */
+
 @Composable
 fun SignUpScreen(navController: NavController) {
     val scrollState = rememberScrollState()
@@ -70,7 +74,7 @@ fun SignUpScreen(navController: NavController) {
 
         // Campos de texto
         InputField(label = "Nombre")
-        InputField(label = "Usuario")
+        InputField(label = "Apellidos")
         InputField(label = "Correo electrónico")
         InputField(label = "Contraseña", isPassword = true)
         InputField(label = "Confirmar Contraseña", isPassword = true)

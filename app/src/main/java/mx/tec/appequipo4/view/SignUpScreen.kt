@@ -14,6 +14,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -78,10 +79,12 @@ fun SignUpScreen(navController: NavController) {
         InputField(label = "CURP")
 
         Spacer(modifier = Modifier.height(16.dp))
-
+        val color = Color(0xFFE91E63)
         // Botón de registro
-        AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63)) {
-            // Acciones al hacer clic en Registrarse
+        AppButton(text = "REGISTRARSE",
+            backgroundColor = Color(0xFFE91E63),
+            modifier = Modifier.padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp))){
+
             navController.navigate("login")
         }
 

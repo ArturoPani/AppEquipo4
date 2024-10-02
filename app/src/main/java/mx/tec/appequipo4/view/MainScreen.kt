@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,17 +38,22 @@ fun MainScreen(navController: NavController) {
             )
             AppTitle()
         //Botones de incio de sesión
+        val color = Color(0xFFE91E63)
         Column {
             Spacer(modifier = Modifier.height(16.dp))
-            AppButton(text = "INICIAR SESIÓN", backgroundColor = Color(0xFFE91E63)) {
+            AppButton(text = "INICIAR SESIÓN",
+                backgroundColor = Color(0xFFE91E63),
+                modifier = Modifier.padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp))) {
                 // Acción de iniciar sesión
                 navController.navigate("login")
             }
-            AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63)) {
+            AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63),
+                modifier = Modifier.padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp))) {
                 // Navega a la pantalla de SignUp
                 navController.navigate("signup") //Borrar cuando se implemente el model y view model
             }
-            AppButton(text = "INVITADO", backgroundColor = Color(0xFFE91E63)) {
+            AppButton(text = "INVITADO", backgroundColor = Color(0xFFE91E63),
+                modifier = Modifier.padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp))) {
                 // Acción para usuario invitado
                 navController.navigate("menu_principal")
             }

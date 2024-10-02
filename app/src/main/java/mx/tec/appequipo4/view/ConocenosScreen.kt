@@ -18,10 +18,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
+
+/**
+ * Pantalla de conocenos donde aparece la información de la fundación (misión, visión, etc.)
+ * @authors Arturo Paniagua
+ */
+
 
 @Composable
 fun ConocenosScreen(navController: NavController) {
@@ -36,7 +43,6 @@ fun ConocenosScreen(navController: NavController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Ajustar el ícono de regreso para que se vea correctamente
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -44,17 +50,23 @@ fun ConocenosScreen(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = Icons.Filled.ArrowBack,  // Cambiar a Icons.Filled.ArrowBack
+                imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "Volver",
                 modifier = Modifier
                     .size(32.dp)
-                    .clickable { navController.popBackStack() } // Volver a la página anterior
+                    .clickable { navController.popBackStack() }
             )
-
-            AppTitle()
         }
         Image(
-            painter = painterResource(id = R.drawable.img_1), // Imagen de la presidenta
+            painter = painterResource(id = R.drawable.zazil_logo),
+            contentDescription = "Logo Zazil",
+            modifier = Modifier
+                .size(200.dp),
+            contentScale = ContentScale.Crop
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.img_1),
             contentDescription = "Virydiana Fernández",
             modifier = Modifier
                 .size(150.dp)
@@ -64,7 +76,7 @@ fun ConocenosScreen(navController: NavController) {
         Text(
             text = "\"Juntos, iluminaremos el camino hacia una generación libre, informada y empoderada.\" \n ¡Libertad para Todas! \n\n Virydiana Fernández \n Presidenta Fundación Todas Brillamos AC",
             fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.SemiBold,
             color = Color.Black,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -72,7 +84,7 @@ fun ConocenosScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Sección "¿Quiénes Somos?" en una sola columna
+
         Text(
             text = "¿QUIÉNES SOMOS?",
             fontSize = 30.sp,
@@ -81,7 +93,7 @@ fun ConocenosScreen(navController: NavController) {
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.img_2), // Imagen del producto
+            painter = painterResource(id = R.drawable.img_2),
             contentDescription = "Producto Zazil",
             modifier = Modifier
                 .size(200.dp)
@@ -101,14 +113,14 @@ fun ConocenosScreen(navController: NavController) {
             text = "\"Cambiando el Mundo, un Ciclo a la Vez.\"",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFFB22222), // Color rojo
+            color = Color(0xFFB22222),
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Sección Misión y Visión en una sola columna
+
         Text(
             text = "NUESTRA MISIÓN",
             fontSize = 30.sp,
@@ -117,7 +129,7 @@ fun ConocenosScreen(navController: NavController) {
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.img_3), // Imagen de la misión
+            painter = painterResource(id = R.drawable.img_3),
             contentDescription = "Nuestra Misión",
             modifier = Modifier
                 .size(200.dp)
@@ -143,7 +155,7 @@ fun ConocenosScreen(navController: NavController) {
             modifier = Modifier.padding(vertical = 8.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.img_4), // Imagen de la visión
+            painter = painterResource(id = R.drawable.img_4),
             contentDescription = "Nuestra Visión",
             modifier = Modifier
                 .size(200.dp)
@@ -161,7 +173,7 @@ fun ConocenosScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Sección Empoderamiento Económico en una sola columna
+
         Text(
             text = "EMPODERAMIENTO ECONÓMICO",
             fontSize = 30.sp,
@@ -198,7 +210,7 @@ fun ConocenosScreen(navController: NavController) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
         Image(
-            painter = painterResource(id = R.drawable.img_6), // Imagen superior
+            painter = painterResource(id = R.drawable.img_6),
             contentDescription = "Empoderamiento Económico",
             modifier = Modifier
                 .size(150.dp)
@@ -206,7 +218,7 @@ fun ConocenosScreen(navController: NavController) {
             contentScale = ContentScale.Crop
         )
         Image(
-            painter = painterResource(id = R.drawable.img_7), // Imagen inferior
+            painter = painterResource(id = R.drawable.img_7),
             contentDescription = "Empoderamiento Económico",
             modifier = Modifier
                 .size(150.dp)
@@ -216,7 +228,7 @@ fun ConocenosScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Sección Únete a Nosotros en una sola columna
+
         Text(
             text = "ÚNETE A NOSOTROS EN NUESTRA MISIÓN",
             fontSize = 30.sp,
@@ -245,7 +257,7 @@ fun ConocenosScreen(navController: NavController) {
             )
         }
         Image(
-            painter = painterResource(id = R.drawable.img_8), // Imagen final
+            painter = painterResource(id = R.drawable.img_8),
             contentDescription = "Imagen Únete a la Misión",
             modifier = Modifier
                 .size(200.dp)

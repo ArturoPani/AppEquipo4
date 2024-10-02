@@ -1,5 +1,6 @@
 package mx.tec.appequipo4.view
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,13 +18,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import mx.tec.appequipo4.R
 
 @Composable
 fun AvisoPrivacidadScreen(navController: NavController) {
-    // Fondo de color
     val backgroundColor = Color(0xFFFEE0D7)
 
-    // Scrollable state
     val scrollState = rememberScrollState()
 
 
@@ -32,7 +34,7 @@ fun AvisoPrivacidadScreen(navController: NavController) {
             .fillMaxSize()
             .background(backgroundColor)
             .padding(16.dp)
-            .verticalScroll(scrollState), // Añadimos la opción de scroll vertical
+            .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -45,18 +47,22 @@ fun AvisoPrivacidadScreen(navController: NavController) {
                 contentDescription = "Volver",
                 modifier = Modifier
                     .size(32.dp)
-                    .clickable { navController.popBackStack() } // Volver a la página anterior
+                    .clickable { navController.popBackStack() }
             )
         }
-        // Título de Aviso de Privacidad
         Text(
             text = "AVISO DE PRIVACIDAD",
             fontSize = 30.sp,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-
-        // Contenido del Aviso de Privacidad
+        Image(
+            painter = painterResource(id = R.drawable.zazil_logo),
+            contentDescription = "Logo Zazil",
+            modifier = Modifier
+                .size(200.dp),
+            contentScale = ContentScale.Crop
+        )
         Text(
             text = """
                 En Fundación Todas Brillamos AC, valoramos la privacidad de nuestros clientes y nos comprometemos a proteger la información personal que nos proporcionan. Esta política de privacidad explica cómo recopilamos, utilizamos y protegemos sus datos personales.

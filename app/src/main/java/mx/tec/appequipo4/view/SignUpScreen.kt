@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -58,7 +59,13 @@ fun SignUpScreen(navController: NavController) {
                     .clickable { navController.popBackStack() } // Volver a la página anterior
             )
         }
-        AppTitle(modifier = Modifier.align(Alignment.CenterHorizontally))
+        Image(
+            painter = painterResource(id = R.drawable.zazil_logo),
+            contentDescription = "Logo Zazil",
+            modifier = Modifier
+                .size(200.dp),
+            contentScale = ContentScale.Crop
+        )
 
         // Campos de texto
         InputField(label = "Nombre")

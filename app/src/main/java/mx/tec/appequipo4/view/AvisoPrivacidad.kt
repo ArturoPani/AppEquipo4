@@ -28,7 +28,6 @@ fun AvisoPrivacidadScreen(navController: NavController) {
 
     val scrollState = rememberScrollState()
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()

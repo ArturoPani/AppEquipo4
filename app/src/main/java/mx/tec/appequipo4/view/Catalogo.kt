@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,7 +29,7 @@ fun Producto(navController: NavController, nombre: String, precio: String, image
     Column(
         modifier = Modifier
             .padding(8.dp)
-            .background(backgroundColor)
+            .background(color = backgroundColor, shape = RoundedCornerShape(16.dp))
             .clickable {
                 // Navega a la pantalla de detalles del producto
                 // Agregar cuando se implemente la pantalla de ruta de producto

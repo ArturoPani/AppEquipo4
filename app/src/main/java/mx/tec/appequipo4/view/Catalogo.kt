@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -21,14 +22,17 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 
-// Composable para un producto
+/**
+ * Pantalla de catálogo donde se muestran los productos disponibles
+ */
+
 @Composable
 fun Producto(navController: NavController, nombre: String, precio: String, imagenId: Int, rutaProducto: String) {
     val backgroundColor = Color(0xFFFFECB3)
     Column(
         modifier = Modifier
             .padding(8.dp)
-            .background(backgroundColor)
+            .background(color = backgroundColor, shape = RoundedCornerShape(16.dp))
             .clickable {
                 // Navega a la pantalla de detalles del producto
                 // Agregar cuando se implemente la pantalla de ruta de producto

@@ -20,6 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+/**
+ * Pantalla de detalles de la compra realizada y vista desde el historial de compras
+ */
+
 @Composable
 fun DetalleHistorial(
     navController: NavController,

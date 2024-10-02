@@ -21,6 +21,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 
+/**
+ * Pantalla que muestra el historial de compras del usuario
+ */
+
 // Composable para cada bloque de historial de compras
 @Composable
 fun HistorialItem(

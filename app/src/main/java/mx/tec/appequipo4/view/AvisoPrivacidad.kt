@@ -1,5 +1,6 @@
 package mx.tec.appequipo4.view
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,6 +18,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import mx.tec.appequipo4.R
 
 @Composable
 fun AvisoPrivacidadScreen(navController: NavController) {
@@ -46,12 +50,18 @@ fun AvisoPrivacidadScreen(navController: NavController) {
                     .clickable { navController.popBackStack() }
             )
         }
-
         Text(
             text = "AVISO DE PRIVACIDAD",
             fontSize = 30.sp,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 16.dp)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.zazil_logo),
+            contentDescription = "Logo Zazil",
+            modifier = Modifier
+                .size(200.dp),
+            contentScale = ContentScale.Crop
         )
         Text(
             text = """

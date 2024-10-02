@@ -75,6 +75,13 @@ fun Catalogo(navController: NavController) {
             )
             Text(text = "Catálogo", fontSize = 24.sp, color = Color.Black)
         }
+        Image(
+            painter = painterResource(id = R.drawable.zazil_logo),
+            contentDescription = "Logo Zazil",
+            modifier = Modifier
+                .size(200.dp),
+            contentScale = ContentScale.Crop
+        )
         // Fila con productos
         Row(
             modifier = Modifier.fillMaxWidth(),

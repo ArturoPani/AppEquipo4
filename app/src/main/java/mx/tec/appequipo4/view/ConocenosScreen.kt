@@ -58,7 +58,7 @@ fun ConocenosScreen(navController: NavController) {
             )
         }
         Image(
-            painter = painterResource(id = R.drawable.zazil_logo), // cambiar a la otra imagen despues
+            painter = painterResource(id = R.drawable.zazil_logo),
             contentDescription = "Logo Zazil",
             modifier = Modifier
                 .size(200.dp),

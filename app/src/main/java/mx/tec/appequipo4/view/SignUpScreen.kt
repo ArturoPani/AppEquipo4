@@ -31,6 +31,7 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 /**
  * Pantalla de registro de usuario.
+ *
  */
 
 @Composable

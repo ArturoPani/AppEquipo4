@@ -120,15 +120,13 @@ fun SignUpScreen(navController: NavController, viewModel: UsuarioViewModel = vie
                     .padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp)
                     .background(color = Color(0xFFE91E63), shape = RoundedCornerShape(16.dp))
             ) {
-                // Cuando se hace clic, intentamos crear el usuario
-                val usuario = viewModel.crearUsuario()
-                if (usuario != null) {
-                    // Aquí podrías enviar los datos del usuario a la base de datos
-                    // y navegar a la pantalla de login.
-                    navController.navigate("login")
-                } else {
-                    // Mostrar un mensaje de error si las contraseñas no coinciden
-                }
+                println("Email: ${viewModel.email.value}")
+                viewModel.crearUsuario()
+
+                // Aquí podrías enviar los datos del usuario a la base de datos
+                // y navegar a la pantalla de login.
+                navController.navigate("login")
+
             }
 
             Spacer(modifier = Modifier.height(16.dp))

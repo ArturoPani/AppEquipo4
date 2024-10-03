@@ -29,7 +29,6 @@ import mx.tec.appequipo4.R
  *
  */
 
-@Preview(showBackground = true, widthDp = 420, heightDp = 600)
 
 @Composable
 fun ConocenosScreen(navController: NavController) {

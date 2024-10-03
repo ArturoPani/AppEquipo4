@@ -1,5 +1,6 @@
 package mx.tec.appequipo4.viewModel
 
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -8,7 +9,6 @@ import mx.tec.appequipo4.model.Usuario
 import mx.tec.appequipo4.model.registrarUsuario
 import java.util.Date
 import java.util.Locale
-
 
 class UsuarioViewModel : ViewModel() {
     private val _usuario = mutableStateOf<Usuario?>(null)
@@ -68,22 +68,23 @@ class UsuarioViewModel : ViewModel() {
         val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
         // Crear la instancia de Usuario
+        println(email.value)
         val nuevoUsuario = Usuario(
             curp = curp.value,
             edad = edad.value,
             nombre = nombre.value,
             apellido = apellido.value,
-            email = email.value,
+            email =email.value,
             contraseña = contraseña.value,
             telefono = telefono.value,
-            createdAt = createdAt
+            creacion = createdAt
         )
 
         // Asignar el nuevo Usuario a _usuario
         _usuario.value = nuevoUsuario
 
         // Llamar a la función registrarUsuario
-        registrarUsuario(nuevoUsuario)
+        registrarUsuario(_usuario) // Ahora le pasas el Context
+        //obtenerUsuarios()
     }
 }
-

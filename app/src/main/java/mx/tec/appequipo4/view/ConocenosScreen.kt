@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -13,9 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +33,15 @@ import mx.tec.appequipo4.R
  *
  */
 
-@Preview(showBackground = true, widthDp = 420, heightDp = 600)
+val customFont = FontFamily(Font(R.font.bebasneue_regular))
+val customFont2 = FontFamily(Font(R.font.safira_march))
+val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+val customFontPoppinsitalic = FontFamily(Font(R.font.poppins_italic))
+val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralightitalic))
+val customColor = Color(0xFFD22973)
+val azul = Color(0xFF5885C6)
+val amarillo = Color(0xFFFFD54F)
+val naranja = Color(0xFFE8623D)
 
 @Composable
 fun ConocenosScreen(navController: NavController) {
@@ -71,14 +83,16 @@ fun ConocenosScreen(navController: NavController) {
             contentDescription = "Virydiana Fernández",
             modifier = Modifier
                 .size(150.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
         Text(
             text = "\"Juntos, iluminaremos el camino hacia una generación libre, informada y empoderada.\" \n ¡Libertad para Todas! \n\n Virydiana Fernández \n Presidenta Fundación Todas Brillamos AC",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Normal,
+            fontFamily = customFont,
+            color = customColor,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
@@ -88,9 +102,10 @@ fun ConocenosScreen(navController: NavController) {
 
         Text(
             text = "¿QUIÉNES SOMOS?",
-            fontSize = 30.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            fontFamily = customFont2,
+            color = naranja,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Image(
@@ -98,6 +113,7 @@ fun ConocenosScreen(navController: NavController) {
             contentDescription = "Producto Zazil",
             modifier = Modifier
                 .size(200.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
@@ -105,6 +121,7 @@ fun ConocenosScreen(navController: NavController) {
             text = "Zazil es una marca comprometida con el bienestar de las mujeres y el cuidado del medio ambiente. Su misión es proporcionar soluciones innovadoras y sostenibles para el período menstrual. ¿Cómo lo hacen? A través de la creación de toallas femeninas reutilizables.",
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
+            fontFamily = customFontPoppins,
             color = Color.Black,
             textAlign = TextAlign.Justify,
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -112,9 +129,10 @@ fun ConocenosScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "\"Cambiando el Mundo, un Ciclo a la Vez.\"",
-            fontSize = 20.sp,
+            fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFFB22222),
+            fontFamily = customFont,
+            color = customColor,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
@@ -124,9 +142,10 @@ fun ConocenosScreen(navController: NavController) {
 
         Text(
             text = "NUESTRA MISIÓN",
-            fontSize = 30.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            color = naranja,
+            fontFamily = customFont2,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Image(
@@ -134,6 +153,7 @@ fun ConocenosScreen(navController: NavController) {
             contentDescription = "Nuestra Misión",
             modifier = Modifier
                 .size(200.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
@@ -142,6 +162,7 @@ fun ConocenosScreen(navController: NavController) {
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            fontFamily = customFontPoppins,
             textAlign = TextAlign.Justify,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
@@ -150,9 +171,10 @@ fun ConocenosScreen(navController: NavController) {
 
         Text(
             text = "NUESTRA VISIÓN",
-            fontSize = 30.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            color = naranja,
+            fontFamily = customFont2,
             modifier = Modifier.padding(vertical = 8.dp)
         )
         Image(
@@ -160,6 +182,7 @@ fun ConocenosScreen(navController: NavController) {
             contentDescription = "Nuestra Visión",
             modifier = Modifier
                 .size(200.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
@@ -167,6 +190,7 @@ fun ConocenosScreen(navController: NavController) {
             text = "\"Imaginamos un mundo donde la menstruación no solo es sostenible para el planeta, sino también empoderadora para todas las mujeres.\"",
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
+            fontFamily = customFontPoppinsitalic,
             color = Color.Black,
             textAlign = TextAlign.Justify,
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -177,22 +201,25 @@ fun ConocenosScreen(navController: NavController) {
 
         Text(
             text = "EMPODERAMIENTO ECONÓMICO",
-            fontSize = 30.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            color = naranja,
+            fontFamily = customFont2,
             modifier = Modifier.padding(vertical = 8.dp)
         )
         Text(
             text = "Ahorro a Largo Plazo:",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFFDA1884),
+            fontFamily = customFontPoppinsitalic,
+            color = azul,
             modifier = Modifier.padding(vertical = 4.dp)
         )
         Text(
             text = "Al invertir en Zazil, estás invirtiendo en un producto que dura. Olvídate de compras mensuales.",
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
+            fontFamily = customFontPoppins,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -200,13 +227,15 @@ fun ConocenosScreen(navController: NavController) {
             text = "Oportunidades de Emprendimiento:",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF42B8D0),
+            fontFamily = customFontPoppinsitalic,
+            color = azul,
             modifier = Modifier.padding(vertical = 4.dp)
         )
         Text(
             text = "Zazil apoya programas que proporcionan oportunidades de emprendimiento.",
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
+            fontFamily = customFontPoppins,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -215,6 +244,7 @@ fun ConocenosScreen(navController: NavController) {
             contentDescription = "Empoderamiento Económico",
             modifier = Modifier
                 .size(150.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
@@ -223,6 +253,7 @@ fun ConocenosScreen(navController: NavController) {
             contentDescription = "Empoderamiento Económico",
             modifier = Modifier
                 .size(150.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )
@@ -232,36 +263,41 @@ fun ConocenosScreen(navController: NavController) {
 
         Text(
             text = "ÚNETE A NOSOTROS EN NUESTRA MISIÓN",
-            fontSize = 30.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            color = naranja,
+            fontFamily = customFont2,
             modifier = Modifier.padding(vertical = 8.dp)
         )
         Text(
             text = "Cada apoyo, cada voz y cada esfuerzo cuentan. Únete a la Fundación \"Todas Brillamos AC\" en nuestra misión de crear un México más igualitario y libre de pobreza menstrual.",
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
+            fontFamily = customFontPoppins,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 16.dp)
         )
         Box(
             modifier = Modifier
-                .background(Color(0xFF7D4C88))
+                .background(azul)
                 .padding(16.dp)
         ) {
             Text(
                 text = "Fundación Todas Brillamos A.C.\nBanorte\nCuenta: 1096319621\nClave: 072180010963196216\nContacto: +52 56 2808 3883",
-                fontSize = 14.sp,
+                fontSize = 20.sp,
                 color = Color.White,
+                fontFamily = customFont,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
         }
+        Spacer(modifier = Modifier.height(16.dp))
         Image(
             painter = painterResource(id = R.drawable.img_8),
             contentDescription = "Imagen Únete a la Misión",
             modifier = Modifier
                 .size(200.dp)
+                .clip(RoundedCornerShape(50))
                 .padding(bottom = 16.dp),
             contentScale = ContentScale.Crop
         )

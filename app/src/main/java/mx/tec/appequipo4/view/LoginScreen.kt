@@ -18,20 +18,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
+import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla que muestra el login de la aplicación
  */
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = viewModel()) {
     val scrollState = rememberScrollState()
     val backgroundColor = Color(0xFFFEE0D7)
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    // Observa el estado de autenticación
+    val isAuthenticated by viewModel.isAuthenticated.collectAsState()
 
     Box(
         modifier = Modifier
@@ -67,15 +72,15 @@ fun LoginScreen(navController: NavController) {
             // Campo de texto para el usuario
             InputField(
                 label = "E-mail",
-                value = email,
-                onValueChange = { email = it }
+                value = viewModel.email.value,
+                onValueChange = { viewModel.onEmailChange(it) }
             )
 
             // Campo de texto para la contraseña
             InputField(
                 label = "Contraseña",
-                value = password,
-                onValueChange = { password = it },
+                value = viewModel.contraseña.value,
+                onValueChange = { viewModel.onContraseñaChange(it) },
                 isPassword = true
             )
 
@@ -89,7 +94,7 @@ fun LoginScreen(navController: NavController) {
                     .background(color = color, shape = RoundedCornerShape(16.dp)),
             ) {
                 // TODO: Acciones al hacer clic en Iniciar Sesion
-                navController.navigate("menu_principal")
+                viewModel.iniciarSesionVM() //mandamos a llamar a iniciar sesion
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -107,6 +112,16 @@ fun LoginScreen(navController: NavController) {
                     },
                 textAlign = TextAlign.Right
             )
+        }
+    }
+
+    // Efecto lanzado que observa el estado de autenticación
+    LaunchedEffect(isAuthenticated) {
+        if (isAuthenticated) {
+            println("Estado de autenticación: $isAuthenticated")
+            navController.navigate("menu_principal") {
+                //popUpTo("login") { inclusive = true }  // Opcional: Remover la pantalla de login del backstack
+            }
         }
     }
 }

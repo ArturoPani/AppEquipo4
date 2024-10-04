@@ -11,4 +11,10 @@ interface ApiService {
 
     @POST("/api/registrarUsuario")
     fun registrarUsuario(@Body usuario: Usuario): Call<Usuario>
+
+    @POST("/api/iniciarSesion")
+    fun iniciarSesion(@Body usuario: LoginUsuario): Call<MatchResponse>
+
+    @GET("api/obtenerProductos")
+    fun obtenerProductos(): Call<List<Product>>
 }

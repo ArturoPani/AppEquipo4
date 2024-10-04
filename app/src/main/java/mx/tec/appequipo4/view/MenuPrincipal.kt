@@ -7,27 +7,30 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
+import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla que muestra el menú principal de la aplicación, incluye los botones para navegar al catalogo, historial de compras, conócenos y salir.
  */
 
 @Composable
-fun MenuPrincipal(navController: NavController) {
+fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = viewModel()) {
     // Fondo degradado
     val backgroundColor = Color(0xFFFEE0D7)
-
+    val productos by viewModel.productos.observeAsState(emptyList())
 
     Box(
         modifier = Modifier
@@ -58,9 +61,17 @@ fun MenuPrincipal(navController: NavController) {
                 val color = Color(0xFFE91E63)
                 AppButton(
                     text = "Catálogo",
-                    backgroundColor = Color(0xFFE91E63),
+                    backgroundColor = color,
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
-                    onClick = { navController.navigate("catalogo") }
+                    onClick = {
+                        // Ejecuta ambas acciones
+
+
+
+                        viewModel.obtenerProductosVM()
+                        println("Lista de productos: $productos")
+                        navController.navigate("catalogo") // Navega a la pantalla del catálogo
+                    }
                 )
 
                 // Botón para navegar al Historial de Compras

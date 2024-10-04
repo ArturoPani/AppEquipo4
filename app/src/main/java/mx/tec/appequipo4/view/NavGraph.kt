@@ -19,7 +19,7 @@ fun NavGraph(navController: NavHostController) {
             MainScreen(navController = navController)
         }
         composable("catalogo") {
-            Catalogo(navController = navController)
+            CatalogoScreen(navController = navController)
         }
         composable("login") {
             LoginScreen(navController = navController)

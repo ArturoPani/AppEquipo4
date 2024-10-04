@@ -7,12 +7,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mx.tec.appequipo4.R
 
 @Composable
 fun AppTitle(modifier: Modifier = Modifier) {
+    val customFont = FontFamily(Font(R.font.safira_march))
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -20,7 +24,8 @@ fun AppTitle(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = "ZAZIL",
-            fontSize = 70.sp,
+            fontSize = 50.sp,
+            fontFamily = customFont,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center)
         )

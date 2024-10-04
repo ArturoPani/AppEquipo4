@@ -13,6 +13,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,9 +28,8 @@ import mx.tec.appequipo4.R
 
 @Composable
 fun MenuPrincipal(navController: NavController) {
-    // Fondo degradado
     val backgroundColor = Color(0xFFFEE0D7)
-
+    val customFont2 = FontFamily(Font(R.font.poppins_extralightitalic))
 
     Box(
         modifier = Modifier
@@ -45,7 +46,7 @@ fun MenuPrincipal(navController: NavController) {
         ) {
             // Imagen grande en la parte superior
             Image(
-                painter = painterResource(id = R.drawable.logo), // Reemplaza con tu recurso de imagen
+                painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Imagen logo",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -58,7 +59,7 @@ fun MenuPrincipal(navController: NavController) {
             Column {
                 val color = Color(0xFFE91E63)
                 AppButton(
-                    text = "Catálogo",
+                    text = "CATÁLOGO",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("catalogo") }
@@ -66,7 +67,7 @@ fun MenuPrincipal(navController: NavController) {
 
                 // Botón para navegar al Historial de Compras
                 AppButton(
-                    text = "Historial de Compras",
+                    text = "HISTORIAL DE COMPRAS",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("historial") }
@@ -74,7 +75,7 @@ fun MenuPrincipal(navController: NavController) {
 
                 // Botón para navegar a Conócenos
                 AppButton(
-                    text = "Conócenos",
+                    text = "CONÓCENOS",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("conocenos") }
@@ -82,7 +83,7 @@ fun MenuPrincipal(navController: NavController) {
 
                 // Botón "Regresar" para volver a la página principal
                 AppButton(
-                    text = "Regresar",
+                    text = "REGRESAR",
                     backgroundColor = Color(0xFFE91E63), // Color púrpura, por ejemplo
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("main") }
@@ -96,6 +97,7 @@ fun MenuPrincipal(navController: NavController) {
         Text(
             text = "Aviso de privacidad",
             fontSize = 12.sp,
+            fontFamily = customFont2,
             color = Color.Black,
             modifier = Modifier
                 .padding(16.dp)

@@ -24,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -39,6 +41,7 @@ import mx.tec.appequipo4.R
 fun LoginScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     val backgroundColor = Color(0xFFFEE0D7)
+
 
     Box(
         modifier = Modifier
@@ -93,6 +96,7 @@ fun LoginScreen(navController: NavController) {
                     text = "Aviso de privacidad",
                     fontSize = 12.sp,
                     color = Color.Black,
+
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.End)

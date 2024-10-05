@@ -1,10 +1,14 @@
 package mx.tec.appequipo4.view
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import mx.tec.appequipo4.R
+import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -19,7 +23,7 @@ fun NavGraph(navController: NavHostController) {
             MainScreen(navController = navController)
         }
         composable("catalogo") {
-            Catalogo(navController = navController)
+            CatalogoScreen(navController = navController)
         }
         composable("login") {
             LoginScreen(navController = navController)
@@ -39,36 +43,21 @@ fun NavGraph(navController: NavHostController) {
         composable(route = "aviso_privacidad") {
             AvisoPrivacidadScreen(navController = navController)
         }
-        composable("producto_regulares") {
-            DetalleProducto(
-                navController = navController,
-                titulo = "Toalla Regular",
-                descripcion = "Toalla reutilizable\nIdeal para flujo moderado\nHecha a mano con telas de algodón\nMedidas: 27 x 7 cms.",
-                precio = "$150.00 MXN",
-                imagenId = R.drawable.image_regulares
+        composable(
+            route = "detalleProducto/{productId}",
+            arguments = listOf(navArgument("productId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            // Obtener el productId de los argumentos
+            val productId = backStackEntry.arguments?.getString("productId")
+
+            // Asegúrate de que estás obteniendo el viewModel y el navController correctamente
+            DetalleProductoScreen(
+                productId = productId ?: "",
+                viewModel = viewModel(), // Si ya has inicializado el ViewModel antes
+                navController = navController // Pasar el navController correctamente
             )
         }
-        composable("producto_nocturnas") {
-            DetalleProducto(
-                navController = navController,
-                titulo = "Toalla Nocturna",
-                descripcion = "Toalla reutilizable\nIdeal para flujo abundante\nHecha a mano con telas de algodón\nMedidas: 29 x 8 cms.",
-                precio = "$180.00 MXN",
-                imagenId = R.drawable.image_nocturnas
-            )
-        }
-        composable("detalle_kit6") {
-            DetalleHistorial(
-                navController = navController,
-                fecha = "21 de junio",
-                nombreProducto = "Kit 6 piezas Ayni",
-                cantidad = 1,
-                precio = "$580.00 MXN",
-                imagenId = R.drawable.image_kit5,
-                instruccionesDevolucion = "Para devolver el producto contacta al número 5512345678. No todos los productos son elegibles para devolución.",
-                rutaCompra = "producto_regulares"
-            )
-        }
+
     }
 }
 

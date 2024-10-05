@@ -33,6 +33,7 @@ import mx.tec.appequipo4.R
  *
  */
 
+
 val customFont = FontFamily(Font(R.font.bebasneue_regular))
 val customFont2 = FontFamily(Font(R.font.safira_march))
 val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
@@ -42,6 +43,7 @@ val customColor = Color(0xFFD22973)
 val azul = Color(0xFF5885C6)
 val amarillo = Color(0xFFFFD54F)
 val naranja = Color(0xFFE8623D)
+
 
 @Composable
 fun ConocenosScreen(navController: NavController) {

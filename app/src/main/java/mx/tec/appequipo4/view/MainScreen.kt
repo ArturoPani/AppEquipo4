@@ -62,6 +62,7 @@ fun MainScreen(navController: NavController) {
             AppButton(text = "REGISTRARSE", backgroundColor = Color(0xFFE91E63),
                 modifier = Modifier.padding(bottom = 16.dp, top = 16.dp, start = 16.dp, end = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp))) {
                 // Navega a la pantalla de SignUp
+                println("apretamos Registrarse")
                 navController.navigate("signup") //Borrar cuando se implemente el model y view model
             }
             AppButton(text = "INVITADO",

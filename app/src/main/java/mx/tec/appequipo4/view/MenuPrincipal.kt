@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,7 +28,11 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
  * Pantalla que muestra el menú principal de la aplicación, incluye los botones para navegar al catalogo, historial de compras, conócenos y salir.
  */
 
+
 @Composable
+fun MenuPrincipal(navController: NavController) {
+    val backgroundColor = Color(0xFFFEE0D7)
+    val customFont2 = FontFamily(Font(R.font.poppins_extralightitalic))
 fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = viewModel()) {
     // Fondo degradado
     val backgroundColor = Color(0xFFFEE0D7)
@@ -47,7 +53,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
         ) {
             // Imagen grande en la parte superior
             Image(
-                painter = painterResource(id = R.drawable.logo), // Reemplaza con tu recurso de imagen
+                painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Imagen logo",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -60,6 +66,8 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
             Column {
                 val color = Color(0xFFE91E63)
                 AppButton(
+                    text = "CATÁLOGO",
+                    backgroundColor = Color(0xFFE91E63),
                     text = "Catálogo",
                     backgroundColor = color,
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
@@ -76,7 +84,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
 
                 // Botón para navegar al Historial de Compras
                 AppButton(
-                    text = "Historial de Compras",
+                    text = "HISTORIAL DE COMPRAS",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("historial") }
@@ -84,7 +92,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
 
                 // Botón para navegar a Conócenos
                 AppButton(
-                    text = "Conócenos",
+                    text = "CONÓCENOS",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("conocenos") }
@@ -92,7 +100,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
 
                 // Botón "Regresar" para volver a la página principal
                 AppButton(
-                    text = "Regresar",
+                    text = "REGRESAR",
                     backgroundColor = Color(0xFFE91E63), // Color púrpura, por ejemplo
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("main") }
@@ -106,6 +114,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
         Text(
             text = "Aviso de privacidad",
             fontSize = 12.sp,
+            fontFamily = customFont2,
             color = Color.Black,
             modifier = Modifier
                 .padding(16.dp)

@@ -15,6 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -122,6 +125,20 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = view
             navController.navigate("menu_principal") {
                 //popUpTo("login") { inclusive = true }  // Opcional: Remover la pantalla de login del backstack
             }
+                Text(
+                    text = "Aviso de privacidad",
+                    fontSize = 12.sp,
+                    color = Color.Black,
+
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.End)
+                        .clickable {
+                            // Navegar a la página de aviso de privacidad
+                            navController.navigate("aviso_privacidad")
+                        },
+                    textAlign = TextAlign.Right
+                )
         }
     }
 }

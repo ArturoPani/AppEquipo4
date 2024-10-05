@@ -20,17 +20,22 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import mx.tec.appequipo4.R
 
 /**
  * Pantalla donde se muestra el aviso de privacidad de la fundación, junto con la empresa
  */
 
+
 @Composable
 fun AvisoPrivacidadScreen(navController: NavController) {
     val backgroundColor = Color(0xFFFEE0D7)
 
     val scrollState = rememberScrollState()
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
 
     Column(
         modifier = Modifier
@@ -55,8 +60,10 @@ fun AvisoPrivacidadScreen(navController: NavController) {
         }
         Text(
             text = "AVISO DE PRIVACIDAD",
-            fontSize = 30.sp,
+            fontSize = 18.sp,
             color = Color.Black,
+            fontFamily = customFont2,
+            textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 16.dp)
         )
         Image(
@@ -100,6 +107,7 @@ fun AvisoPrivacidadScreen(navController: NavController) {
             """.trimIndent(),
             fontSize = 15.sp,
             color = Color.Black,
+            fontFamily = customFontPoppins,
             textAlign = TextAlign.Justify
         )
         Spacer(modifier = Modifier.height(40.dp))

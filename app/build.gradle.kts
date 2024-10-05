@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "mx.tec.appequipo4"
-        minSdk = 29
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation ("io.coil-kt:coil-compose:2.1.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Para convertir JSON a objetos
     implementation(libs.retrofit)
@@ -65,6 +66,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

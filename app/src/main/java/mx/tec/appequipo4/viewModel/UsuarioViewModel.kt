@@ -129,14 +129,45 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
-
-
-
-
     fun obtenerProductosVM() {
-        obtenerProductos { productoList ->
-            _productos.value = productoList
-            println("lista: $productoList") // Imprime la lista obtenida
+        try {
+            obtenerProductos { productoList ->
+                if (productoList.isNotEmpty()) {
+                    _productos.value = productoList
+                    println("Lista obtenida: $productoList")  // Imprime la lista obtenida
+                } else {
+                    println("No se encontraron productos")
+                    _productos.value = emptyList()  // En caso de que la lista esté vacía
+                }
+            }
+        } catch (e: Exception) {
+            println("Error al obtener productos: ${e.message}")
+            _productos.value = emptyList()  // En caso de error, asigna una lista vacía
         }
     }
+
+
+    fun getProductById(productId: String?): Product? {
+        val productos = _productos.value
+
+        // Si la lista de productos es nula o está vacía, intenta obtener los productos
+        if (productos == null || productos.isEmpty()) {
+            println("Lista de productos vacía o no cargada. Intentando cargar productos...")
+            obtenerProductosVM()  // Llama a la función para obtener los productos
+
+            // Después de intentar cargar, revisamos de nuevo si los productos están disponibles
+            val productosActualizados = _productos.value
+            if (productosActualizados == null || productosActualizados.isEmpty()) {
+                println("Productos aún no cargados después de intentar obtenerlos.")
+                return null  // Si los productos aún no se cargan, regresamos null
+            }
+        }
+
+        // Si los productos están disponibles, realiza la búsqueda por ID
+        println("Buscando producto con ID: $productId")
+        return productos?.find { it.product_id.toString() == productId }
+    }
+
+
+
 }

@@ -1,114 +1,74 @@
 package mx.tec.appequipo4.view
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 @Composable
-fun DetalleProducto(
-    navController: NavController,
-    titulo: String,
-    descripcion: String,
-    precio: String,
-    imagenId: Int,
-    cantidad: Int = 1
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Barra de navegación superior
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            // Botón para regresar
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Volver",
-                modifier = Modifier
-                    .size(32.dp)
-                    .clickable { navController.popBackStack() } // Volver a la página anterior
-            )
+fun DetalleProductoScreen(productId: String, viewModel: UsuarioViewModel, navController: NavController) {
+    val productos = viewModel.productos.observeAsState(initial = emptyList())
 
-            // Título del producto
-            Text(text = titulo, fontSize = 24.sp, color = Color.Black)
+    // Variable de estado para la cantidad seleccionada
+    var cantidad by remember { mutableStateOf("1") }
 
-            // Botón para cerrar
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = "Cerrar",
-                modifier = Modifier
-                    .size(32.dp)
-                    .clickable { navController.popBackStack() }
-            )
+    if (productos.value.isEmpty()) {
+        LaunchedEffect(key1 = productId) {
+            viewModel.obtenerProductosVM()
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "Cargando producto...")
+    } else {
+        val producto = productos.value.find { it.product_id.toString() == productId }
 
-        // Imagen del producto
-        Image(
-            painter = painterResource(id = imagenId), // Imagen del producto
-            contentDescription = titulo,
-            modifier = Modifier.size(200.dp),
-            contentScale = ContentScale.Crop
-        )
+        Column(modifier = Modifier.padding(16.dp)) {
+            if (producto != null) {
+                Text(text = "Detalle del Producto", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
+                Text(text = "ID: ${producto.product_id}")
+                Text(text = "Nombre: ${producto.name}")
+                Text(text = "Descripción: ${producto.description}")
+                Text(text = "Precio: \$${producto.price}")
+                Text(text = "Cantidad en Stock: ${producto.stock_quality}")
+                Text(text = "Categoría ID: ${producto.category_id}")
+                Text(text = "Creado el: ${producto.created_at}")
+                Text(text = "Imagen URL: ${producto.imageUrl}")
 
-        Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-        // Detalles del producto
-        Text(text = titulo, fontSize = 20.sp, color = Color.Black)
-        Text(text = descripcion, fontSize = 14.sp, color = Color.Gray)
-        Text(text = precio, fontSize = 16.sp, color = Color.Black)
+                // Campo de texto para seleccionar la cantidad
+                OutlinedTextField(
+                    value = cantidad,
+                    onValueChange = { cantidad = it },
+                    label = { Text("Cantidad") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
 
-        Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-        // Control para cantidad
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Button(onClick = { /* Disminuir cantidad */ }) {
-                Text(text = "-")
-            }
+                // Botón para agregar al carrito
+                Button(onClick = {
+                    // Lógica para agregar al carrito
+                   // viewModel.agregarAlCarrito(producto, cantidad.toIntOrNull() ?: 1)
+                }) {
+                    Text(text = "Agregar al carrito")
+                }
 
-            Text(text = cantidad.toString(), fontSize = 20.sp)
-
-            Button(onClick = { /* Aumentar cantidad */ }) {
-                Text(text = "+")
+                // Botón para regresar
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(onClick = { navController.popBackStack() }) {
+                    Text(text = "Regresar")
+                }
+            } else {
+                Text(text = "Producto no encontrado")
             }
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Botón de agregar al carrito
-        Button(
-            onClick = { /* Acción de agregar al carrito */ },
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(16.dp)
-        ) {
-            Text(text = "Agregar al carrito", fontSize = 16.sp)
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
     }
 }

@@ -9,6 +9,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,8 +21,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import kotlinx.coroutines.launch
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
@@ -28,7 +31,7 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
  */
 
 @Composable
-fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = viewModel()) {
+fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel) {
     val scrollState = rememberScrollState()
     val backgroundColor = Color(0xFFFEE0D7)
 
@@ -37,6 +40,12 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = view
 
     // Observa el estado de autenticación
     val isAuthenticated by viewModel.isAuthenticated.collectAsState()
+
+    var isLogin = false
+
+    // Estado del Snackbar
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     Box(
         modifier = Modifier
@@ -94,6 +103,7 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = view
                     .background(color = color, shape = RoundedCornerShape(16.dp)),
             ) {
                 // TODO: Acciones al hacer clic en Iniciar Sesion
+                //isLogin = true
                 viewModel.iniciarSesionVM() //mandamos a llamar a iniciar sesion
             }
 
@@ -113,6 +123,11 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = view
                 textAlign = TextAlign.Right
             )
         }
+        // Mostrar el Snackbar
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 
     // Efecto lanzado que observa el estado de autenticación
@@ -123,5 +138,15 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel = view
                 //popUpTo("login") { inclusive = true }  // Opcional: Remover la pantalla de login del backstack
             }
         }
+        //else {
+            // Mostrar el Snackbar cuando falle la autenticación
+            //coroutineScope.launch {
+            //    snackbarHostState.showSnackbar(
+            //        message = "Error al iniciar sesión, no se pudo verificar la cuenta",
+            //        duration = SnackbarDuration.Short
+            //    )
+
+        //}
+
     }
 }

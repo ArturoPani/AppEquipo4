@@ -17,37 +17,37 @@ fun NavGraph(navController: NavHostController, viewModel: UsuarioViewModel) {
             "") {
 
         composable("signup") {
-            SignUpScreen(navController = navController)
+            SignUpScreen(navController = navController,viewModel)
         }
         composable("main") {
-            MainScreen(navController = navController)
+            MainScreen(navController = navController,viewModel)
         }
         composable("catalogo") {
             CatalogoScreen(navController = navController)
         }
         composable("login") {
-            LoginScreen(navController = navController)
+            LoginScreen(navController = navController,viewModel)
             }
         composable("home") {
             HomeScreen(navController = navController)
         }
         composable("conocenos") {
-            ConocenosScreen(navController = navController)
+            ConocenosScreen(navController = navController,viewModel)
         }
         composable("historial") {
-            HistorialCompras(navController = navController)
+            HistorialCompras(navController = navController,viewModel)
         }
         composable("menu_principal") {
-            MenuPrincipal(navController = navController)
+            MenuPrincipal(navController = navController,viewModel)
         }
         composable(route = "aviso_privacidad") {
-            AvisoPrivacidadScreen(navController = navController)
+            AvisoPrivacidadScreen(navController = navController,viewModel)
         }
         composable(route = "Carrito") {
-            Carrito(navController = navController, viewModel = viewModel)
+            Carrito(navController = navController,viewModel)
         }
         composable(route = "Checkout") {
-            Checkout(navController = navController, viewModel = viewModel)
+            Checkout(navController = navController,viewModel)
         }
         composable(
             route = "detalleProducto/{productId}",

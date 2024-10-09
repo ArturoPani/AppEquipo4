@@ -60,7 +60,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
             Column {
                 val color = Color(0xFFE91E63)
                 AppButton(
-                    text = "Catálogo",
+                    text = "CATÁLOGO",
                     backgroundColor = color,
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = {
@@ -76,7 +76,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
 
                 // Botón para navegar al Historial de Compras
                 AppButton(
-                    text = "Historial de Compras",
+                    text = "HISTORIAL DE COMPRAS",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("historial") }
@@ -84,7 +84,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
 
                 // Botón para navegar a Conócenos
                 AppButton(
-                    text = "Conócenos",
+                    text = "CONÓCENOS",
                     backgroundColor = Color(0xFFE91E63),
                     modifier = Modifier.padding(bottom = 16.dp).background(color = color, shape = RoundedCornerShape(16.dp)),
                     onClick = { navController.navigate("conocenos") }
@@ -104,7 +104,7 @@ fun MenuPrincipal(navController: NavController,viewModel: UsuarioViewModel = vie
 
         // Texto de "Aviso de privacidad" en la parte inferior derecha
         Text(
-            text = "Aviso de privacidad",
+            text = "AVISO DE PRIVACIDAD",
             fontSize = 12.sp,
             color = Color.Black,
             modifier = Modifier

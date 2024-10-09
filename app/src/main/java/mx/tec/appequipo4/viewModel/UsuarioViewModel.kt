@@ -22,6 +22,7 @@ import java.util.Locale
 class UsuarioViewModel : ViewModel() {
 
     var emailCompra:String = ""
+
     private val _usuario = mutableStateOf<Usuario?>(null)
     val usuario: MutableState<Usuario?> = _usuario
 
@@ -33,6 +34,8 @@ class UsuarioViewModel : ViewModel() {
     private val _isAuthenticated = MutableStateFlow(false)
     val isAuthenticated: StateFlow<Boolean> get() = _isAuthenticated
 
+    private val _emailCompras = MutableStateFlow("")
+    val emailCompras: StateFlow<String> get() = _emailCompras
 
     private val _productos = MutableLiveData<List<Product>>()
     val productos: LiveData<List<Product>> get() = _productos
@@ -68,6 +71,8 @@ class UsuarioViewModel : ViewModel() {
 
     fun onEmailChange(newEmail: String) {
         email.value = newEmail
+        emailCompra = newEmail
+        println("on email change called with newEmail: $emailCompra")
     }
 
     fun onContraseñaChange(newContraseña: String) {
@@ -90,6 +95,7 @@ class UsuarioViewModel : ViewModel() {
         curp.value = newCurp
     }
 
+    var emailSuperBueno = ""
     // Función para crear un Usuario
     fun crearUsuario() {
         val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
@@ -114,13 +120,15 @@ class UsuarioViewModel : ViewModel() {
             email = email.value,
             contraseña = contraseña.value,
         )
-
+        val emailBueno = email.value
+        emailSuperBueno = emailBueno
         _loginUsuario.value = nuevoUsuario
         iniciarSesion(_loginUsuario) { success ->
             if (success) {
 
                 println("Inicio de sesión exitoso")
                 emailCompra = email.value
+                emailSuperBueno
                 _isAuthenticated.value = true
 
                 println("Estado de autenticación en vm: $_isAuthenticated")
@@ -131,6 +139,8 @@ class UsuarioViewModel : ViewModel() {
 
             }
         }
+        _emailCompras.value = emailSuperBueno
+        println("Estado de email al final de IniciarSesion: ${emailSuperBueno}")
     }
 
     fun obtenerProductosVM() {
@@ -205,24 +215,18 @@ class UsuarioViewModel : ViewModel() {
 
 
     //me quedo aqui
-    fun hacerCheckoutVM() {
+    fun hacerCheckoutVM(email: String) {
         println("Compra registrada con éxito1")
-        println("EmailCompra: $emailCompra")
+        println("EmailCompra: $email")
         // Verifica que haya un usuario y que el carrito no esté vacío
         val nuevaCompra = Compra(
-            //curp = emailCompra,
-            curp = "A01751150@tec.mx",
+            curp = email,
             products = _carrito.value ?: emptyList()  // Pasa la lista de productos desde el carrito
         )
 
-        println("Datos de la compra: $nuevaCompra")
 
         // Asigna el valor a la variable `_compra`
         _compra.value = nuevaCompra
-        println(_compra.value!!.curp)
-        // Registrar la compra
         registrarCompra(_compra)
-        //ola
-
     }
 }

@@ -18,13 +18,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
+import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla principal de la aplicación, donde se muestran los botones de inicio de sesión, registro y acceso como invitado.
  */
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(navController: NavController, usuarioViewModel: UsuarioViewModel) {
     val backgroundColor = Color(0xFFFEE0D7)
 
     Column(

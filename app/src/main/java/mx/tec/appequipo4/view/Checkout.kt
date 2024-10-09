@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +25,7 @@ fun Checkout(
     viewModel: UsuarioViewModel,
 ) {
     val productos = viewModel.carrito.observeAsState(initial = emptyList())
+    val emailCompras by viewModel.emailCompras.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,7 +56,7 @@ fun Checkout(
                     Button(
                         onClick = {
                             // Lógica para confirmar la compra
-                            viewModel.hacerCheckoutVM()
+                            viewModel.hacerCheckoutVM(emailCompras)
                             println("Compra confirmada en checkout.kt")
                             // Por ejemplo, limpiar el carrito y navegar a una pantalla de éxito
                             navController.navigate("menu_principal") {

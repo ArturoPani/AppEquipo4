@@ -8,7 +8,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -49,76 +51,90 @@ fun DetalleProductoScreen(productId: String, viewModel: UsuarioViewModel, navCon
         }
         val snackbarHostState = remember { SnackbarHostState() }
         val coroutineScope = rememberCoroutineScope() // Necesario para mostrar el Snackbar
-        Column(modifier = Modifier.padding(16.dp)) {
-            if (producto != null) {
-                Text(text = "Detalle del Producto", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
-                Text(text = "Nombre: ${producto.name}")
-                Text(text = "Descripción: ${producto.description}")
-                Text(text = "Precio: \$${producto.price}")
-                Text(text = "Cantidad en Stock: ${producto.stock_quality}")
-                Text(text = "Categoría ID: ${producto.category_id}")
-                Text(text = "Creado el: ${producto.created_at}")
 
-                Image(
-                    painter = painterResource(id = imageResourceId),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp),
-                    contentScale = ContentScale.Crop
-                )
-                //Text(text = "Imagen URL: ${producto.image_route}")
+        // Agrega SnackbarHost aquí
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                if (producto != null) {
+                    Text(text = "Detalle del Producto", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
+                    Text(text = "Nombre: ${producto.name}")
+                    Text(text = "Descripción: ${producto.description}")
+                    Text(text = "Precio: \$${producto.price}")
+                    Text(text = "Cantidad en Stock: ${producto.stock_quality}")
+                    Text(text = "Categoría ID: ${producto.category_id}")
+                    Text(text = "Creado el: ${producto.created_at}")
 
-                Spacer(modifier = Modifier.height(16.dp))
+                    Image(
+                        painter = painterResource(id = imageResourceId),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(8.dp),
+                        contentScale = ContentScale.Crop
+                    )
 
-                // Campo de texto para seleccionar la cantidad
-                OutlinedTextField(
-                    value = cantidad,
-                    onValueChange = { cantidad = it },
-                    label = { Text("Cantidad") },
-                    modifier = Modifier.fillMaxWidth(),
-                    singleLine = true
-                )
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                Spacer(modifier = Modifier.height(16.dp))
+                    // Campo de texto para seleccionar la cantidad
+                    OutlinedTextField(
+                        value = cantidad,
+                        onValueChange = { cantidad = it },
+                        label = { Text("Cantidad") },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true
+                    )
 
-                Button(onClick = {
-                    // Lógica para agregar al carrito
-                    viewModel.agregarProductoAlCarrito(producto)
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                    // Mostrar el Snackbar
-                    coroutineScope.launch {
-                        snackbarHostState.showSnackbar(
-                            message = "Producto agregado al carrito",
-                            duration = SnackbarDuration.Long
-                        )
+                    Button(onClick = {
+                        // Lógica para agregar al carrito
+                        viewModel.agregarProductoAlCarrito(producto)
+
+                        // Mostrar el Snackbar
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar(
+                                message = "Producto agregado al carrito",
+                                duration = SnackbarDuration.Short
+                            )
+                        }
+                    }) {
+                        Text(text = "Agregar al carrito")
                     }
-                }) {
-                    Text(text = "Agregar al carrito")
+
+                    // Botón para regresar
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Button(onClick = { navController.popBackStack() }) {
+                        Text(text = "Regresar")
+                    }
+                } else {
+                    Text(text = "Producto no encontrado")
                 }
 
-                // Botón para regresar
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { navController.popBackStack() }) {
-                    Text(text = "Regresar")
+                // Botón flotante para ir al carrito
+                FloatingActionButton(
+                    onClick = { navController.navigate("Carrito") },
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(16.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ShoppingCart,
+                        contentDescription = "Ir al carrito"
+                    )
                 }
-            } else {
-                Text(text = "Producto no encontrado")
             }
 
-
-            // Botón flotante para ir al carrito
-            FloatingActionButton(
-                onClick = { navController.navigate("Carrito") },
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(16.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ShoppingCart,
-                    contentDescription = "Ir al carrito"
-                )
-            }
+            // Colocar el SnackbarHost en la parte superior de la pantalla
+            SnackbarHost(
+                hostState = snackbarHostState,
+                snackbar = { snackbarData ->
+                    Snackbar(
+                        snackbarData = snackbarData,
+                        //containerColor = androidx.compose.ui.graphics.Color.Transparent, // Fondo transparent
+                    )
+                },
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
         }
     }
 }

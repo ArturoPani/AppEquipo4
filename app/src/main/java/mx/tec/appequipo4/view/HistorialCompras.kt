@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
+import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla que muestra el historial de compras del usuario
@@ -72,7 +73,7 @@ fun HistorialItem(
 
 // Pantalla principal del historial de compras
 @Composable
-fun HistorialCompras(navController: NavController) {
+fun HistorialCompras(navController: NavController,viewModel: UsuarioViewModel) {
     val scrollState = rememberScrollState()
     Icon(
         imageVector = Icons.Default.ArrowBack,

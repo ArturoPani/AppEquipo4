@@ -3,11 +3,12 @@ import mysql.connector
 from mysql.connector import Error
 import hashlib
 from datetime import datetime
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 #FUNCIONES
-
-
 def hash_password_sha256(password: str) -> str:
     # Convertir la contraseña en bytes
     password_bytes = password.encode('utf-8')
@@ -22,6 +23,81 @@ def hash_password_sha256(password: str) -> str:
     hashed_password = sha256_hash.hexdigest()
     
     return hashed_password
+
+
+def enviar_correo_confirmacion(outlook_user, outlook_password, destinatario, subject, nombre_cliente, productos, total):
+    # Crear el mensaje
+    msg = MIMEMultipart()
+    msg['From'] = outlook_user
+    msg['To'] = destinatario
+    msg['Subject'] = subject
+    
+    # Crear el contenido del correo en formato HTML
+    html = f"""
+    <html>
+    <body>
+        <div style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+            <div style="background-color: #0078D7; padding: 20px; text-align: center; color: white;">
+                <h1>¡Gracias por tu compra, {nombre_cliente}!</h1>
+                <h3>Fundación Todas Brillamos A.C.
+                Banorte
+                Cuenta: 1096319621
+                Clave: 072180010963196216
+                Contacto: +52 56 2808 3883 </h3>
+            </div>
+            <div style="padding: 20px;">
+                <h2>Detalles de tu compra:</h2>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Producto</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Cantidad</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    """
+    
+    # Añadir los productos a la tabla HTML
+    for producto, cantidad, precio in productos:
+        html += f"""
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">{producto}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{cantidad}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${precio:.2f}</td>
+        </tr>
+        """
+    
+    # Cerrar la tabla y añadir el total
+    html += f"""
+                    </tbody>
+                </table>
+                <h3>Total: ${total:.2f}</h3>
+                <p>Gracias por confiar en Zazil. Tu pedido será procesado pronto.</p>
+            </div>
+            <div style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+                <p style="font-size: 12px; color: #666;">Este es un correo automático, no respondas a este mensaje.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+
+    # Adjuntar el HTML al cuerpo del mensaje
+    msg.attach(MIMEText(html, 'html'))
+
+    # Configurar la conexión con el servidor SMTP de Outlook
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()  # Iniciar la conexión segura
+        #server = smtplib.SMTP('localhost')
+        server.login(outlook_user, outlook_password)  # Iniciar sesión con el correo y contraseña
+        text = msg.as_string()  # Convertir el mensaje a formato string
+        server.sendmail(outlook_user, destinatario, text)  # Enviar el correo
+        server.quit()
+        print(f"Correo enviado con éxito a {destinatario}")
+    except Exception as e:
+        print(f"Error al enviar el correo: {str(e)}")
 
 
 ##SERVIDOR
@@ -183,7 +259,7 @@ def registrarCompra():
         data = request.json  # Esperamos que los datos vengan en formato JSON
         
         # Obtener el curp del usuario
-        curp = data.get('curp')
+        curp = data.get('curp') #en realidad es el email
         products = data.get('products')
 
         cursor = connection.cursor()
@@ -194,6 +270,11 @@ def registrarCompra():
         user = cursor.fetchone()
         if user is None:
             return jsonify({'error': 'Usuario no encontrado.'}), 404
+        
+        user_name_query = "SELECT first_name from usuario WHERE email = %s"
+        cursor.execute(user_name_query,(curp,))
+        user_name_cursor = cursor.fetchone()
+        user_name = user_name_cursor[0]
 
         user_id = user[0]  # Extraer el user_id del resultado
         print(user_id)
@@ -210,23 +291,25 @@ def registrarCompra():
         cursor.execute(query_pedido, (user_id, total_amount, 'Pendiente', current_time, current_time))
         order_id = cursor.lastrowid  # Obtener el ID del pedido recién insertado
         print(f"order id: {order_id}")
-        print("2")
         # Registrar los detalles del pedido en 'detalles_pedido'
+        productos_tupla = []  # Lista para guardar las tuplas de productos
+        total_carrito = 0
         for product in products:
             product_id = product.get('product_id')
-         
             quantity = product.get('quantity', 1)
-            
             price = product.get('price')
-            
-            
-            
+            name = product.get('name')
+            description = product.get('description')
 
+            # Guardar la información en una tupla
+            productos_tupla.append((name, description, price))
+            
+            total_carrito += price
             query_detalle = "INSERT INTO detalles_pedido (order_id, product_id, quantity, sold_price) VALUES (%s, %s, %s, %s)"
             cursor.execute(query_detalle, (order_id, product_id, quantity, price))
-            print("3.5")
+            
 
-        print("3")
+        
         connection.commit()
 
         return jsonify({'message': 'Compra registrada correctamente'}), 201
@@ -238,9 +321,24 @@ def registrarCompra():
         if connection.is_connected():
             cursor.close()
             connection.close()
+            # Uso de la función
+            #outlook_user = "zazil.brillamos@outlook.com"
+            #outlook_password = "nfceepttbzezlben"
+            outlook_user = "zazil.brillamos@gmail.com"
+            outlook_password = "kres dlim lxzd vcpo"
+            destinatario = curp
+            subject = "Confirmación de tu compra"
+            nombre_cliente = user_name
+            productos = productos_tupla
+            total = total_carrito
+
+            enviar_correo_confirmacion(outlook_user, outlook_password, destinatario, subject, nombre_cliente, productos, total)
+
 
 
 if __name__ == '__main__':
     #//context = ( 'cert.pem', 'key.pem')  # Ruta a tu certificado y clave privada
     #app.run(host='0.0.0.0', port=5000, ssl_context=context)
-    app.run()
+    #app.run()
+    app.run(host='0.0.0.0', port=5000)
+

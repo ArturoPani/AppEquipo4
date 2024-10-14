@@ -27,6 +27,8 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla donde se muestra el aviso de privacidad de la fundación, junto con la empresa
+ * @param navController controlador de navegación de la aplicación
+ * @param viewModel modelo de vista del usuario
  */
 
 
@@ -35,8 +37,15 @@ fun AvisoPrivacidadScreen(navController: NavController, viewModel: UsuarioViewMo
     val backgroundColor = Color(0xFFFEE0D7)
 
     val scrollState = rememberScrollState()
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
     val customFont2 = FontFamily(Font(R.font.safira_march))
     val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val amarilloClaro = Color(0xFFFFECB3)
+    val naranja = Color(0xFFE8623D)
 
     Column(
         modifier = Modifier
@@ -62,8 +71,8 @@ fun AvisoPrivacidadScreen(navController: NavController, viewModel: UsuarioViewMo
         Text(
             text = "AVISO DE PRIVACIDAD",
             fontSize = 18.sp,
-            color = Color.Black,
-            fontFamily = customFont2,
+            color = customColor,
+            fontFamily = customFont,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 16.dp)
         )

@@ -5,6 +5,10 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Body
 
+/**
+ * Interfaz que define las operaciones de la API.
+ */
+
 interface ApiService {
     @GET("/api/obtenerUsuario")
     fun obtenerUsuarios(): Call<List<Usuario>>
@@ -17,6 +21,9 @@ interface ApiService {
 
     @GET("api/obtenerProductos")
     fun obtenerProductos(): Call<List<Product>>
+
+    @POST("api/obtenerProductosHistorial")
+    fun obtenerProductosHistorial(@Body body: Map<String, String>): Call<List<Product>>
 
     @POST("/api/registrarCompra")
     fun registrarCompra(@Body compra: Compra): Call<Compra>

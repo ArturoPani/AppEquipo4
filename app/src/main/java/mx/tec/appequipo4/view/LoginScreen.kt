@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -18,6 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,15 +31,27 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla que muestra el login de la aplicación
+ * @param navController Controlador de navegación de la aplicación
+ * @param viewModel Modelo de vista del usuario
  */
 
 @Composable
 fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel) {
     val scrollState = rememberScrollState()
     val backgroundColor = Color(0xFFFEE0D7)
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val amarilloClaro = Color(0xFFFFFFFF)
+    val naranja = Color(0xFFE8623D)
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
 
     // Observa el estado de autenticación
     val isAuthenticated by viewModel.isAuthenticated.collectAsState()
@@ -56,6 +71,7 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(scrollState)
         ) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
@@ -82,6 +98,7 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel) {
             InputField(
                 label = "E-mail",
                 value = viewModel.email.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onEmailChange(it) }
             )
 
@@ -89,6 +106,7 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel) {
             InputField(
                 label = "Contraseña",
                 value = viewModel.contraseña.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onContraseñaChange(it) },
                 isPassword = true
             )
@@ -110,9 +128,10 @@ fun LoginScreen(navController: NavController, viewModel: UsuarioViewModel) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Aviso de privacidad",
+                text = "AVISO DE PRIVACIDAD",
                 fontSize = 12.sp,
                 color = Color.Black,
+                fontFamily = customFontPoppinsextralight,
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.End)

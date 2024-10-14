@@ -10,6 +10,12 @@ import androidx.navigation.navArgument
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
+/**
+ * Archivo que contiene la navegación de la aplicación
+ * @param navController Controlador de navegación
+ * @param viewModel ViewModel de la aplicación
+ */
+
 @Composable
 fun NavGraph(navController: NavHostController, viewModel: UsuarioViewModel) {
 
@@ -35,7 +41,7 @@ fun NavGraph(navController: NavHostController, viewModel: UsuarioViewModel) {
             ConocenosScreen(navController = navController,viewModel)
         }
         composable("historial") {
-            HistorialCompras(navController = navController,viewModel)
+            HistorialScreen(navController = navController,viewModel)
         }
         composable("menu_principal") {
             MenuPrincipal(navController = navController,viewModel)

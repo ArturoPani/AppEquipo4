@@ -15,14 +15,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.model.Product
 
+/**
+ * Composable que representa un producto en la lista de productos en el catálogo.
+ * @param product El producto a mostrar.
+ * @param onClick La acción a realizar cuando se hace clic en el producto.
+ */
+
 @Composable
 fun ProductoComposable(product: Product, onClick: () -> Unit) {
     val context = LocalContext.current
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val naranja = Color(0xFFE8623D)
+
     val imageResourceId = remember(product.image_route) {
         context.resources.getIdentifier(product.image_route, "drawable", context.packageName)
     }
@@ -53,8 +70,8 @@ fun ProductoComposable(product: Product, onClick: () -> Unit) {
 
             // Detalles del producto
             Column(modifier = Modifier.weight(2f)) {
-                Text(text = product.name, color = Color.Black)
-                Text(text = "\$${product.price}", color = Color.Gray)
+                Text(text = product.name, color = Color.Black, fontFamily = customFontPoppins)
+                Text(text = "\$${product.price}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
             }
         }
     }

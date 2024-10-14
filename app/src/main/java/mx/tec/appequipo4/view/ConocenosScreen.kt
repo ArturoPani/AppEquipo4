@@ -31,6 +31,8 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla de conocenos donde aparece la información de la fundación (misión, visión, etc.)
+ * @param navController controlador de navegación de la aplicación
+ * @param viewModel modelo de vista del usuario
  *
  */
 val customFont = FontFamily(Font(R.font.bebasneue_regular))
@@ -271,7 +273,7 @@ fun ConocenosScreen(navController: NavController, viewModel: UsuarioViewModel) {
             modifier = Modifier.padding(vertical = 8.dp)
         )
         Text(
-            text = "Cada apoyo, cada voz y cada esfuerzo cuentan. Únete a la Fundación \"Todas Brillamos AC\" en nuestra misión de crear un México más igualitario y libre de pobreza menstrual.",
+            text = "Cada apoyo, cada voz y cada esfuerzo cuentan. Únete a la Fundación \"Todas Brillamos AC\" en nuestra misión de crear un México más igualitario y libre de pobreza menstrual. Cada centavo cuenta.",
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = customFontPoppins,
@@ -284,7 +286,7 @@ fun ConocenosScreen(navController: NavController, viewModel: UsuarioViewModel) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "Fundación Todas Brillamos A.C.\nBanorte\nCuenta: 1096319621\nClave: 072180010963196216\nContacto: +52 56 2808 3883",
+                text = "Fundación Todas Brillamos A.C.\nBanorte\nCuenta: 1096319621\nClabe: 072180010963196216\nContacto: +52 56 2808 3883",
                 fontSize = 20.sp,
                 color = Color.White,
                 fontFamily = customFont,

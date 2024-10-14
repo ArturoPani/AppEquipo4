@@ -1,140 +1,109 @@
 package mx.tec.appequipo4.view
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
- * Pantalla que muestra el historial de compras del usuario
+ * Pantalla que muestra el catálogo de productos.
+ * @param navController Controlador de navegación para navegar entre pantallas.
+ * @param viewModel ViewModel asociado al catálogo.
  */
 
-// Composable para cada bloque de historial de compras
 @Composable
-fun HistorialItem(
-    navController: NavController,
-    fecha: String,
-    nombreProducto: String,
-    cantidad: Int,
-    imagenId: Int,
-    rutaDetalles: String
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        // Imagen del producto
-        Image(
-            painter = painterResource(id = imagenId),
-            contentDescription = nombreProducto,
-            modifier = Modifier.size(100.dp),
-            contentScale = ContentScale.Crop
-        )
+fun HistorialScreen(navController: NavController, viewModel: UsuarioViewModel = viewModel()) {
+    // Observamos los productos del ViewModel
+    val productos = viewModel.productos.observeAsState(initial = emptyList())
+    val emailCompras by viewModel.emailCompras.collectAsState()
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val amarilloClaro = Color(0xFF39D402)
+    val naranja = Color(0xFFE8623D)
 
-        Spacer(modifier = Modifier.width(16.dp))
 
-        // Información del producto
-        Column(
-            modifier = Modifier.weight(1f)
+    // Estructura principal
+    Column(modifier = Modifier.padding(16.dp)) {
+        // Fila (Row) con la flecha de regreso y el título del catálogo
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.Start
         ) {
-            Text(text = "Pedido realizado el $fecha", fontSize = 16.sp, color = Color.Black)
-            Text(text = nombreProducto, fontSize = 14.sp, color = Color.Gray)
-            Text(text = "Cantidad: $cantidad", fontSize = 14.sp, color = Color.Gray)
+            // Flecha de regresar
+            IconButton(onClick = { navController.popBackStack() }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack, // Usa el ícono por defecto de Jetpack Compose
+                    contentDescription = "Regresar"
+                )
+            }
+
+            // Título de la pantalla de catálogo
             Text(
-                text = "Más detalles",
-                fontSize = 14.sp,
-                color = Color.Blue,
-                modifier = Modifier.clickable {
-                    navController.navigate(rutaDetalles)
-                }
+                text = "Catálogo",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = customFont,
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .weight(1f)
             )
         }
+
+        // Mostramos los productos en una LazyColumn
+        LazyColumn {
+            items(productos.value) { producto ->
+                ProductoComposable(product = producto) {
+                    // Navegar a la pantalla de detalle del producto con su ID
+                    navController.navigate("detalleProducto/${producto.product_id}")
+                }
+            }
+        }
     }
-}
 
-// Pantalla principal del historial de compras
-@Composable
-fun HistorialCompras(navController: NavController,viewModel: UsuarioViewModel) {
-    val scrollState = rememberScrollState()
-    Icon(
-        imageVector = Icons.Default.ArrowBack,
-        contentDescription = "Volver",
+    // Cargamos los productos desde el backend
+    viewModel.obtenerProductosHistorialVM(emailCompras)
+    // Botón flotante para ir al carrito
+    FloatingActionButton(
+        onClick = { navController.navigate("Carrito") },
         modifier = Modifier
-            .size(32.dp)
-            .clickable { navController.popBackStack() } // Volver a la página anterior
-    )
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
             .padding(16.dp)
-            .verticalScroll(scrollState)
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-        // Título de la página
-        Text(
-            text = "Historial de compras",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
+        Icon(
+            imageVector = Icons.Default.ShoppingCart,
+            contentDescription = "Ir al carrito",
+            tint = customColor,
+            modifier = Modifier.size(48.dp)
         )
-
-        // Elementos de historial
-        HistorialItem(
-            navController = navController,
-            fecha = "21 de junio",
-            nombreProducto = "Kit 6 piezas",
-            cantidad = 1,
-            imagenId = R.drawable.image_kit3,
-            rutaDetalles = "detalle_kit6"
-        )
-
-        HistorialItem(
-            navController = navController,
-            fecha = "21 de junio",
-            nombreProducto = "Toalla Teens",
-            cantidad = 4,
-            imagenId = R.drawable.image_teens,
-            rutaDetalles = "detalles_teens"
-        )
-
-        HistorialItem(
-            navController = navController,
-            fecha = "25 de mayo",
-            nombreProducto = "Kit 3 piezas",
-            cantidad = 1,
-            imagenId = R.drawable.image_kit3,
-            rutaDetalles = "detalles_kit3"
-        )
-
-        HistorialItem(
-            navController = navController,
-            fecha = "9 de abril",
-            nombreProducto = "Toalla Nocturna",
-            cantidad = 4,
-            imagenId = R.drawable.image_nocturnas,
-            rutaDetalles = "detalles_nocturnas"
-        )
-
-        // Puedes agregar más elementos aquí usando el mismo composable `HistorialItem`
     }
 }

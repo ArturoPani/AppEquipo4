@@ -6,6 +6,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Funcion para obtener los usuarios de la base de datos
+ */
+
 fun obtenerUsuarios() {
     RetrofitClient.instance.obtenerUsuarios().enqueue(object : Callback<List<Usuario>> {
         override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>) {
@@ -22,6 +26,11 @@ fun obtenerUsuarios() {
         }
     })
 }
+
+/**
+ * Funcion para registrar un usuario en la base de datos
+ * @param usuarioState: MutableState<Usuario?> - El estado del usuario a registrar.
+ */
 
 fun registrarUsuario(usuarioState: MutableState<Usuario?>) {
     val usuario = usuarioState.value
@@ -42,6 +51,11 @@ fun registrarUsuario(usuarioState: MutableState<Usuario?>) {
     }
 }
 
+/**
+ * Funcion para iniciar sesion
+ * @param loginUsuarioState: MutableState<LoginUsuario?> - El estado del usuario a iniciar sesion.
+ * @param onSuccess: (Boolean) -> Unit - Una función de devolución de llamada que se ejecutará si el inicio de sesión es exitoso.
+ */
 
 fun iniciarSesion(loginUsuarioState: MutableState<LoginUsuario?>, onSuccess: (Boolean) -> Unit) {
     val usuario = loginUsuarioState.value
@@ -74,6 +88,10 @@ fun iniciarSesion(loginUsuarioState: MutableState<LoginUsuario?>, onSuccess: (Bo
     }
 }
 
+/**
+ * Funcion para obtener los productos de la base de datos
+ */
+
 fun getProductos(): LiveData<List<Product>> = liveData {
     try {
         val response = RetrofitClient.instance.obtenerProductos().execute() // Asegúrate de que la llamada sea síncrona
@@ -91,8 +109,10 @@ fun getProductos(): LiveData<List<Product>> = liveData {
     }
 }
 
-
-
+/**
+ * Funcion para obtener los productos de la base de datos
+ * @param callback: (List<Product>) -> Unit - Una función de devolución de llamada que se ejecutará con la lista de productos obtenida.
+ */
 fun obtenerProductos(callback: (List<Product>) -> Unit) {
     RetrofitClient.instance.obtenerProductos().enqueue(object : Callback<List<Product>> {
         override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
@@ -112,7 +132,30 @@ fun obtenerProductos(callback: (List<Product>) -> Unit) {
     })
 }
 
+fun obtenerProductosHistorial(callback: (List<Product>) -> Unit, email: String) {
+    val requestBody = mapOf("email" to email)  // Creamos el cuerpo de la solicitud con el email
+    RetrofitClient.instance.obtenerProductosHistorial(requestBody).enqueue(object : Callback<List<Product>> {
+        override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+            if (response.isSuccessful) {
+                val productos = response.body() ?: emptyList()
+                callback(productos) // Pasamos la lista a través del callback
+            } else {
+                // Maneja el error aquí
+                callback(emptyList())
+            }
+        }
 
+        override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+            // Maneja la falla de la llamada aquí
+            callback(emptyList())
+        }
+    })
+}
+
+/**
+ * Funcion para registrar una compra en la base de datos
+ * @param compraState: MutableState<Compra?> - El estado de la compra a registrar.
+ */
 fun registrarCompra(compraState: MutableState<Compra?>) {
     val compra = compraState.value
     if (compra != null) {

@@ -248,6 +248,75 @@ def obtenerProductos():
 
 
 
+#me queda probarlo en postman
+@app.route('/api/obtenerProductosHistorial', methods=['POST'])
+def obtenerProductosHistorial():
+    try:
+        # Establecer la conexión a la base de datos
+        connection = get_db_connection()
+        if connection is None:
+            return jsonify({'error': 'No se pudo conectar a la base de datos.'}), 500
+
+        # Crear un cursor para ejecutar consultas
+        cursor = connection.cursor(dictionary=True)
+    
+        # Obtener los datos enviados en el cuerpo de la petición
+        data = request.json  # Esperamos que los datos vengan en formato JSON
+        print(data)
+        # Obtener el email del usuario (en realidad es el email, no el curp)
+        email = data.get('email')  # Asegúrate de que el frontend envía el 'email'
+        
+        if not email:
+            return jsonify({'error': 'Email no proporcionado.'}), 400
+
+        # Ejecutar la consulta para obtener los productos del historial de compras del usuario
+        query = '''
+        SELECT 
+            u.email, 
+            p.order_id, 
+            d.product_id, 
+            prod.name AS product_name, 
+            d.quantity, 
+            d.sold_price, 
+            d.subtotal, 
+            p.created_at AS order_date
+        FROM 
+            usuario u
+        JOIN 
+            pedidos p ON u.user_id = p.user_id
+        JOIN 
+            detalles_pedido d ON p.order_id = d.order_id
+        JOIN 
+            producto prod ON d.product_id = prod.product_id
+        WHERE 
+            u.email = %s;
+        '''
+
+        # Ejecutar la consulta con el email proporcionado
+        cursor.execute(query, (email,))
+        result = cursor.fetchall()  # Obtener todos los resultados de la consulta
+
+        # Si no se encuentran resultados
+        if not result:
+            return jsonify({'message': 'No se encontraron productos para este cliente.'}), 404
+
+        # Devolver los resultados en formato JSON
+        return jsonify(result), 200
+
+    except Error as e:
+        # Manejar errores de la base de datos
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        # Asegurarse de cerrar el cursor y la conexión
+        if connection:
+            cursor.close()
+            connection.close()
+
+
+
+
+
 @app.route('/api/registrarCompra', methods=['POST'])
 def registrarCompra():
     try:

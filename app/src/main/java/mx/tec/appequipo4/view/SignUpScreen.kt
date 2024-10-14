@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,11 +29,23 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
 /**
  * Pantalla de registro de usuario.
+ * @param navController Controlador de navegación.
+ * @param viewModel Modelo de vista del usuario.
  */
+
 @Composable
 fun SignUpScreen(navController: NavController, viewModel: UsuarioViewModel = viewModel()) {
     val scrollState = rememberScrollState()
     val backgroundColor = Color(0xFFFEE0D7)
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val amarilloClaro = Color(0xFFFFECB3)
+    val naranja = Color(0xFFE8623D)
 
     Box(
         modifier = Modifier
@@ -70,43 +84,51 @@ fun SignUpScreen(navController: NavController, viewModel: UsuarioViewModel = vie
             InputField(
                 label = "Nombre",
                 value = viewModel.nombre.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onNombreChange(it) }
             )
             InputField(
                 label = "Apellidos",
                 value = viewModel.apellido.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onApellidoChange(it) }
             )
             InputField(
                 label = "Correo electrónico",
                 value = viewModel.email.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onEmailChange(it) }
             )
             InputField(
                 label = "Contraseña",
                 value = viewModel.contraseña.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onContraseñaChange(it) },
                 isPassword = true
             )
             InputField(
                 label = "Confirmar Contraseña",
                 value = viewModel.confirmarContraseña.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onConfirmarContraseñaChange(it) },
                 isPassword = true
             )
             InputField(
                 label = "Teléfono",
                 value = viewModel.telefono.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onTelefonoChange(it) }
             )
             InputField(
                 label = "Edad",
                 value = viewModel.edad.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onEdadChange(it) }
             )
             InputField(
                 label = "CURP",
                 value = viewModel.curp.value,
+                modifier = Modifier.background(amarilloClaro),
                 onValueChange = { viewModel.onCurpChange(it) }
             )
 
@@ -132,9 +154,10 @@ fun SignUpScreen(navController: NavController, viewModel: UsuarioViewModel = vie
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Aviso de privacidad",
+                text = "AVISO DE PRIVACIDAD",
                 fontSize = 12.sp,
                 color = Color.Black,
+                fontFamily = customFontPoppinsextralight,
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.End)

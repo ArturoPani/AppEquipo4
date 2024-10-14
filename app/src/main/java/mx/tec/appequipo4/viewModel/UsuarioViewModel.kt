@@ -14,6 +14,7 @@ import mx.tec.appequipo4.model.Product
 import mx.tec.appequipo4.model.Usuario
 import mx.tec.appequipo4.model.iniciarSesion
 import mx.tec.appequipo4.model.obtenerProductos
+import mx.tec.appequipo4.model.obtenerProductosHistorial
 import mx.tec.appequipo4.model.registrarCompra
 import mx.tec.appequipo4.model.registrarUsuario
 import java.util.Date
@@ -61,13 +62,28 @@ class UsuarioViewModel : ViewModel() {
     var curp = mutableStateOf("")
         private set
 
+    /**
+     * Actualiza el nombre del usuario.
+     * @param newNombre Nuevo nombre del usuario.
+     */
+
     fun onNombreChange(newNombre: String) {
         nombre.value = newNombre
     }
 
+    /**
+     * Actualiza el apellido del usuario.
+     * @param newApellido Nuevo apellido del usuario.
+     */
+
     fun onApellidoChange(newApellido: String) {
         apellido.value = newApellido
     }
+
+    /**
+     * Actualiza el email del usuario.
+     * @param newEmail Nuevo email del usuario.
+     */
 
     fun onEmailChange(newEmail: String) {
         email.value = newEmail
@@ -75,21 +91,46 @@ class UsuarioViewModel : ViewModel() {
         println("on email change called with newEmail: $emailCompra")
     }
 
+    /**
+     * Actualiza la contraseña del usuario.
+     * @param newContraseña Nueva contraseña del usuario.
+     */
+
     fun onContraseñaChange(newContraseña: String) {
         contraseña.value = newContraseña
     }
+
+    /**
+     * Actualiza la confirmación de la contraseña del usuario.
+     * @param newConfirmarContraseña Nueva confirmación de contraseña del usuario.
+     */
 
     fun onConfirmarContraseñaChange(newConfirmarContraseña: String) {
         confirmarContraseña.value = newConfirmarContraseña
     }
 
+    /**
+     * Actualiza el teléfono del usuario.
+     * @param newTelefono Nuevo teléfono del usuario.
+     */
+
     fun onTelefonoChange(newTelefono: String) {
         telefono.value = newTelefono
     }
 
+    /**
+     * Actualiza la edad del usuario.
+     * @param newEdad Nueva edad del usuario.
+     */
+
     fun onEdadChange(newEdad: String) {
         edad.value = newEdad
     }
+
+    /**
+     * Actualiza la CURP del usuario.
+     * @param newCurp Nueva CURP del usuario.
+     */
 
     fun onCurpChange(newCurp: String) {
         curp.value = newCurp
@@ -97,6 +138,10 @@ class UsuarioViewModel : ViewModel() {
 
     var emailSuperBueno = ""
     // Función para crear un Usuario
+    /**
+     * Crea un nuevo usuario con la información proporcionada.
+     */
+
     fun crearUsuario() {
         val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         println(email.value)
@@ -114,6 +159,10 @@ class UsuarioViewModel : ViewModel() {
         registrarUsuario(_usuario)
     }
 
+
+    /**
+     * Inicia sesión con las credenciales proporcionadas.
+     */
 
     fun iniciarSesionVM() {
         val nuevoUsuario = LoginUsuario(
@@ -143,6 +192,10 @@ class UsuarioViewModel : ViewModel() {
         println("Estado de email al final de IniciarSesion: ${emailSuperBueno}")
     }
 
+    /**
+     * Obtiene la lista de productos.
+     */
+
     fun obtenerProductosVM() {
         try {
             obtenerProductos { productoList ->
@@ -160,6 +213,11 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Obtiene un producto por su ID.
+     * @param productId ID del producto a buscar.
+     * @return El producto encontrado o null si no se encuentra.
+     */
 
     fun getProductById(productId: String?): Product? {
         val productos = _productos.value
@@ -185,6 +243,12 @@ class UsuarioViewModel : ViewModel() {
     // Funcionalidad del carrito
 
     // Agregar un producto al carrito
+
+    /**
+     * Agrega un producto al carrito.
+     * @param product Producto a agregar al carrito.
+     */
+
     fun agregarProductoAlCarrito(product: Product) {
         println("si se llama agregar carrito")
         val carritoActualizado = _carrito.value?.toMutableList()?.apply {
@@ -194,6 +258,10 @@ class UsuarioViewModel : ViewModel() {
         println("carrito actualizado: ${_carrito.value}")
     }
 
+    /**
+     * Elimina un producto del carrito.
+     * @param product Producto a eliminar del carrito.
+     */
     // Eliminar un producto del carrito
     fun eliminarProductoDelCarrito(product: Product) {
         val carritoActualizado = _carrito.value?.toMutableList()?.apply {
@@ -202,11 +270,23 @@ class UsuarioViewModel : ViewModel() {
         _carrito.value = carritoActualizado
     }
 
+    /**
+     * Vaciar el carrito.
+     */
     // Vaciar el carrito
     fun vaciarCarrito() {
         _carrito.value = emptyList()
     }
 
+    fun cerrarSesion(){
+        _isAuthenticated.value = false
+    }
+
+
+    /**
+     * Mostrar el estado del carrito.
+     * @return Lista de productos en el carrito.
+     */
     // Mostrar el estado del carrito
     fun mostrarCarrito(): List<Product>? {
 
@@ -214,7 +294,10 @@ class UsuarioViewModel : ViewModel() {
     }
 
 
-    //me quedo aqui
+    /**
+     * Realiza el checkout.
+     * @param email Email del usuario.
+     */
     fun hacerCheckoutVM(email: String) {
         println("Compra registrada con éxito1")
         println("EmailCompra: $email")
@@ -229,4 +312,24 @@ class UsuarioViewModel : ViewModel() {
         _compra.value = nuevaCompra
         registrarCompra(_compra)
     }
+
+
+
+    fun obtenerProductosHistorialVM(email: String) {
+        try {
+            obtenerProductosHistorial({ productoList ->
+                if (productoList.isNotEmpty()) {
+                    _productos.value = productoList
+                    println("Lista obtenida: $productoList")  // Imprime la lista obtenida
+                } else {
+                    println("No se encontraron productos")
+                    _productos.value = emptyList()  // En caso de que la lista esté vacía
+                }
+            }, email) // Asegúrate de pasar el 'email' aquí
+        } catch (e: Exception) {
+            println("Error al obtener productos: ${e.message}")
+            _productos.value = emptyList()  // En caso de error, asigna una lista vacía
+        }
+    }
+
 }

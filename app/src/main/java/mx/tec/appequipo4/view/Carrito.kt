@@ -25,6 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -38,18 +41,26 @@ fun Carrito(
     navController: NavHostController,
     viewModel: UsuarioViewModel // Pasamos el ViewModel para manejar la eliminación
 ) {
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val naranja = Color(0xFFE8623D)
     val productos = viewModel.carrito.observeAsState(initial = emptyList())
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(text = "Carrito de Compras", fontSize = 24.sp, color = Color.Black)
+        Text(text = "Carrito de Compras", fontSize = 24.sp, color = Color.Black, fontFamily = customFont)
 
         Spacer(modifier = Modifier.height(16.dp))
 
         if (productos.value.isNullOrEmpty()) {
-            Text(text = "Tu carrito está vacío.", fontSize = 16.sp, color = Color.Gray)
+            Text(text = "Tu carrito está vacío.", fontSize = 16.sp, color = Color.Gray, fontFamily = customFontPoppins)
         } else {
             LazyColumn(
                 modifier = Modifier
@@ -72,10 +83,10 @@ fun Carrito(
                     // Botón de Checkout
                     Button(
                         onClick = { navController.navigate("checkout") },
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().background(customColor),
                         contentPadding = PaddingValues(16.dp)
                     ) {
-                        Text(text = "Realizar Compra", fontSize = 16.sp)
+                        Text(text = "Realizar Compra", fontSize = 16.sp, fontFamily = customFontPoppins)
                     }
                 }
             }
@@ -89,6 +100,14 @@ fun ProductoItem(
     navController: NavHostController,
     eliminarProductoDelCarrito: (Product) -> Unit
 ) {
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val naranja = Color(0xFFE8623D)
 
     Card(
         modifier = Modifier
@@ -119,9 +138,9 @@ fun ProductoItem(
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(text = producto.name, fontSize = 18.sp, color = Color.Black)
-                Text(text = "Precio: $${producto.price} MXN", fontSize = 14.sp, color = Color.Gray)
-                Text(text = "Cantidad: 1", fontSize = 14.sp, color = Color.Gray) // Asumiendo una cantidad por producto
+                Text(text = producto.name, fontSize = 18.sp, color = Color.Black, fontFamily = customFontPoppins, fontWeight = FontWeight.Bold)
+                Text(text = "Precio: $${producto.price} MXN", fontSize = 14.sp, color = Color.Gray, fontFamily = customFontPoppinsextralight)
+                Text(text = "Cantidad: 1", fontSize = 14.sp, color = Color.Gray, fontFamily = customFontPoppinsextralight) // Asumiendo una cantidad por producto
             }
 
             // Botón para eliminar del carrito

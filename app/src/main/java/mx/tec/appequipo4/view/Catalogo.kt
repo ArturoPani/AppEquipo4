@@ -1,5 +1,6 @@
 package mx.tec.appequipo4.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,18 +16,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import mx.tec.appequipo4.R
 import mx.tec.appequipo4.viewModel.UsuarioViewModel
 
+/**
+ * Pantalla que muestra el catálogo de productos.
+ * @param navController Controlador de navegación para navegar entre pantallas.
+ * @param viewModel ViewModel asociado al catálogo.
+ */
 
 @Composable
 fun CatalogoScreen(navController: NavController, viewModel: UsuarioViewModel = viewModel()) {
     // Observamos los productos del ViewModel
     val productos = viewModel.productos.observeAsState(initial = emptyList())
+    val customFont = FontFamily(Font(R.font.bebasneue_regular))
+    val customFont2 = FontFamily(Font(R.font.safira_march))
+    val customFontPoppins = FontFamily(Font(R.font.poppins_regular))
+    val customFontPoppinsextralight = FontFamily(Font(R.font.poppins_extralight))
+    val customColor = Color(0xFFD22973)
+    val azul = Color(0xFF5885C6)
+    val amarillo = Color(0xFFFFD54F)
+    val amarilloClaro = Color(0xFF39D402)
+    val naranja = Color(0xFFE8623D)
+
 
     // Estructura principal
     Column(modifier = Modifier.padding(16.dp)) {
@@ -48,8 +68,9 @@ fun CatalogoScreen(navController: NavController, viewModel: UsuarioViewModel = v
             // Título de la pantalla de catálogo
             Text(
                 text = "Catálogo",
-                fontSize = 24.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
+                fontFamily = customFont,
                 modifier = Modifier
                     .padding(start = 8.dp)
                     .weight(1f)
@@ -77,7 +98,9 @@ fun CatalogoScreen(navController: NavController, viewModel: UsuarioViewModel = v
     ) {
         Icon(
             imageVector = Icons.Default.ShoppingCart,
-            contentDescription = "Ir al carrito"
+            contentDescription = "Ir al carrito",
+            tint = customColor,
+            modifier = Modifier.size(48.dp)
         )
     }
 }

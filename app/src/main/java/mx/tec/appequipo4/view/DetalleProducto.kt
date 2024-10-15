@@ -84,11 +84,9 @@ fun DetalleProductoScreen(productId: String, viewModel: UsuarioViewModel, navCon
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(text = "Precio: \$${producto.price}", fontFamily = customFontPoppins)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Cantidad en Stock: ${producto.stock_quality}", fontFamily = customFontPoppins)
+                    Text(text = "Cantidad en Stock: ${producto.stock_quantity}", fontFamily = customFontPoppins)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Categoría ID: ${producto.category_id}", fontFamily = customFontPoppins)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    //Text(text = "Creado el: ${producto.created_at}")
+
 
                     Image(
                         painter = painterResource(id = imageResourceId),

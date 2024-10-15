@@ -53,6 +53,8 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.1.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Para convertir JSON a objetos
+    implementation ("androidx.compose.ui:ui:1.5.0")
+    implementation ("androidx.compose.material3:material3:1.1.0")
     implementation(libs.retrofit)
     implementation(libs.okhttp)
     implementation(libs.converter.gson.v290)

@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.model.Product
@@ -74,10 +75,10 @@ fun ProductoHistorialComposable(product: ProductHistorial, onClick: () -> Unit) 
             )
             // Detalles del producto
             Column(modifier = Modifier.weight(2f)) {
-                Text(text = product.name, color = Color.Black, fontFamily = customFontPoppins)
-                Text(text = "\$${product.order_date}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
-                Text(text = "\$${product.sold_price}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
-                Text(text = "\$${product.description}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
+                Text(text = product.name, color = Color.Black, fontFamily = customFontPoppins, fontSize = 30.sp)
+                Text(text = "fecha de compra: \$${product.order_date}", color = Color.Gray, fontFamily = customFontPoppinsextralight,fontSize = 30.sp)
+                Text(text = "monto comprado: \$${product.sold_price}", color = Color.Gray, fontFamily = customFontPoppinsextralight,fontSize = 30.sp)
+                Text(text = "\$${product.description}", color = Color.Gray, fontFamily = customFontPoppinsextralight,fontSize = 30.sp)
 
             }
         }

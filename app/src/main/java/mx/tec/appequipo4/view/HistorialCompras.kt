@@ -85,7 +85,7 @@ fun HistorialScreen(navController: NavController, viewModel: UsuarioViewModel) {
             items(productos.value) { producto ->
                 ProductoHistorialComposable(producto) {
                     // Navegar a la pantalla de detalle del producto con su ID
-                    navController.navigate("detalleProducto/${producto.product_id}")
+                    navController.navigate("detalleHistorial/${producto.product_id}")
                 }
             }
         }

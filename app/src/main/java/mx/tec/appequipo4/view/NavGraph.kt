@@ -70,6 +70,21 @@ fun NavGraph(navController: NavHostController, viewModel: UsuarioViewModel) {
             )
         }
 
+        composable(
+            route = "detalleHistorial/{productId}",
+            arguments = listOf(navArgument("productId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            // Obtener el productId de los argumentos
+            val productId = backStackEntry.arguments?.getString("productId")
+
+            // Asegúrate de que estás obteniendo el viewModel y el navController correctamente
+            DetalleHistorialScreen(
+                productId = productId ?: "",
+                viewModel = viewModel, // Si ya has inicializado el ViewModel antes
+                navController = navController // Pasar el navController correctamente
+            )
+        }
+
     }
 }
 

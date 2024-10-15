@@ -3,7 +3,7 @@ package mx.tec.appequipo4.view
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -32,7 +32,8 @@ fun InputField(
     value: String, // Pasamos el valor como parámetro
     onValueChange: (String) -> Unit, // Función para manejar los cambios en el texto
     modifier: Modifier = Modifier,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    keyboardOptions: KeyboardOptions
 ) {
     val customFont = FontFamily(Font(R.font.bebasneue_regular))
     val customFont2 = FontFamily(Font(R.font.safira_march))

@@ -6,6 +6,18 @@ from datetime import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from flask import Flask, jsonify, request
+import mysql.connector
+from mysql.connector import Error
+import hashlib
+from datetime import datetime
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from flask import Flask, render_template
+from flask_cors import CORS
+from werkzeug.utils import secure_filename
+import os
 
 
 #FUNCIONES
@@ -259,7 +271,7 @@ def obtenerProductosHistorial():
 
         # Crear un cursor para ejecutar consultas
         cursor = connection.cursor(dictionary=True)
-    
+
         # Obtener los datos enviados en el cuerpo de la petición
         data = request.json  # Esperamos que los datos vengan en formato JSON
         print(data)
@@ -272,14 +284,13 @@ def obtenerProductosHistorial():
         # Ejecutar la consulta para obtener los productos del historial de compras del usuario
         query = '''
         SELECT 
-            u.email, 
             p.order_id, 
             d.product_id, 
-            prod.name AS product_name, 
-            d.quantity, 
+            prod.name AS name, 
+            prod.description,
             d.sold_price, 
-            d.subtotal, 
-            p.created_at AS order_date
+            p.created_at AS order_date,
+            prod.image_route
         FROM 
             usuario u
         JOIN 

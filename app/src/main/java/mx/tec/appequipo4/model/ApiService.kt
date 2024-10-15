@@ -23,7 +23,7 @@ interface ApiService {
     fun obtenerProductos(): Call<List<Product>>
 
     @POST("api/obtenerProductosHistorial")
-    fun obtenerProductosHistorial(@Body body: Map<String, String>): Call<List<Product>>
+    fun obtenerProductosHistorial(@Body body: Map<String, String>): Call<List<ProductHistorial>>
 
     @POST("/api/registrarCompra")
     fun registrarCompra(@Body compra: Compra): Call<Compra>

@@ -1,5 +1,6 @@
 package mx.tec.appequipo4.view
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.model.Product
+import mx.tec.appequipo4.model.ProductHistorial
 
 /**
  * Composable que representa un producto en la lista de productos en el catálogo.
@@ -30,7 +32,7 @@ import mx.tec.appequipo4.model.Product
  */
 
 @Composable
-fun ProductoComposable(product: Product, onClick: () -> Unit) {
+fun ProductoHistorialComposable(product: ProductHistorial, onClick: () -> Unit) {
     val context = LocalContext.current
     val customFont = FontFamily(Font(R.font.bebasneue_regular))
     val customFont2 = FontFamily(Font(R.font.safira_march))
@@ -55,6 +57,15 @@ fun ProductoComposable(product: Product, onClick: () -> Unit) {
             // Imagen del producto
             println("product.imageUrl: ${product.image_route}")
 
+            /*Image(
+                painter = painterResource(id = imageResourceId),
+                contentDescription = null,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(8.dp),
+                contentScale = ContentScale.Crop
+            )*/
+
             val imageUrl = "http://10.0.2.2:5000/static/images/${product.image_route}.png"
             Image(//producto.image_route
                 painter = rememberAsyncImagePainter(model = imageUrl),
@@ -64,7 +75,10 @@ fun ProductoComposable(product: Product, onClick: () -> Unit) {
             // Detalles del producto
             Column(modifier = Modifier.weight(2f)) {
                 Text(text = product.name, color = Color.Black, fontFamily = customFontPoppins)
-                Text(text = "\$${product.price}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
+                Text(text = "\$${product.order_date}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
+                Text(text = "\$${product.sold_price}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
+                Text(text = "\$${product.description}", color = Color.Gray, fontFamily = customFontPoppinsextralight)
+
             }
         }
     }

@@ -36,9 +36,9 @@ import mx.tec.appequipo4.viewModel.UsuarioViewModel
  */
 
 @Composable
-fun HistorialScreen(navController: NavController, viewModel: UsuarioViewModel = viewModel()) {
+fun HistorialScreen(navController: NavController, viewModel: UsuarioViewModel) {
     // Observamos los productos del ViewModel
-    val productos = viewModel.productos.observeAsState(initial = emptyList())
+    val productos = viewModel.productosHistorial.observeAsState(initial = emptyList())
     val emailCompras by viewModel.emailCompras.collectAsState()
     val customFont = FontFamily(Font(R.font.bebasneue_regular))
     val customFont2 = FontFamily(Font(R.font.safira_march))
@@ -70,7 +70,7 @@ fun HistorialScreen(navController: NavController, viewModel: UsuarioViewModel = 
 
             // Título de la pantalla de catálogo
             Text(
-                text = "Catálogo",
+                text = "Historial de Compras",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = customFont,
@@ -83,27 +83,14 @@ fun HistorialScreen(navController: NavController, viewModel: UsuarioViewModel = 
         // Mostramos los productos en una LazyColumn
         LazyColumn {
             items(productos.value) { producto ->
-                ProductoComposable(product = producto) {
+                ProductoHistorialComposable(producto) {
                     // Navegar a la pantalla de detalle del producto con su ID
                     navController.navigate("detalleProducto/${producto.product_id}")
                 }
             }
         }
+        viewModel.obtenerProductosHistorialVM(emailCompras)
     }
 
-    // Cargamos los productos desde el backend
-    viewModel.obtenerProductosHistorialVM(emailCompras)
-    // Botón flotante para ir al carrito
-    FloatingActionButton(
-        onClick = { navController.navigate("Carrito") },
-        modifier = Modifier
-            .padding(16.dp)
-    ) {
-        Icon(
-            imageVector = Icons.Default.ShoppingCart,
-            contentDescription = "Ir al carrito",
-            tint = customColor,
-            modifier = Modifier.size(48.dp)
-        )
-    }
+
 }

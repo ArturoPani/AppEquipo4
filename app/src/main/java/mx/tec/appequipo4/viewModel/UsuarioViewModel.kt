@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import mx.tec.appequipo4.model.Compra
 import mx.tec.appequipo4.model.LoginUsuario
 import mx.tec.appequipo4.model.Product
+import mx.tec.appequipo4.model.ProductHistorial
 import mx.tec.appequipo4.model.Usuario
 import mx.tec.appequipo4.model.iniciarSesion
 import mx.tec.appequipo4.model.obtenerProductos
@@ -40,6 +41,9 @@ class UsuarioViewModel : ViewModel() {
 
     private val _productos = MutableLiveData<List<Product>>()
     val productos: LiveData<List<Product>> get() = _productos
+
+    private val _productosHistorial = MutableLiveData<List<ProductHistorial>>()
+    val productosHistorial: LiveData<List<ProductHistorial>> get() = _productosHistorial
 
     // Estado del carrito
     private val _carrito = MutableLiveData<List<Product>?>(emptyList())
@@ -319,16 +323,16 @@ class UsuarioViewModel : ViewModel() {
         try {
             obtenerProductosHistorial({ productoList ->
                 if (productoList.isNotEmpty()) {
-                    _productos.value = productoList
+                    _productosHistorial.value = productoList
                     println("Lista obtenida: $productoList")  // Imprime la lista obtenida
                 } else {
                     println("No se encontraron productos")
-                    _productos.value = emptyList()  // En caso de que la lista esté vacía
+                    _productosHistorial.value = emptyList()  // En caso de que la lista esté vacía
                 }
             }, email) // Asegúrate de pasar el 'email' aquí
         } catch (e: Exception) {
             println("Error al obtener productos: ${e.message}")
-            _productos.value = emptyList()  // En caso de error, asigna una lista vacía
+            _productosHistorial.value = emptyList()  // En caso de error, asigna una lista vacía
         }
     }
 

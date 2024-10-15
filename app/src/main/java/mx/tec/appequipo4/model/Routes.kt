@@ -132,10 +132,10 @@ fun obtenerProductos(callback: (List<Product>) -> Unit) {
     })
 }
 
-fun obtenerProductosHistorial(callback: (List<Product>) -> Unit, email: String) {
+fun obtenerProductosHistorial(callback: (List<ProductHistorial>) -> Unit, email: String) {
     val requestBody = mapOf("email" to email)  // Creamos el cuerpo de la solicitud con el email
-    RetrofitClient.instance.obtenerProductosHistorial(requestBody).enqueue(object : Callback<List<Product>> {
-        override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+    RetrofitClient.instance.obtenerProductosHistorial(requestBody).enqueue(object : Callback<List<ProductHistorial>> {
+        override fun onResponse(call: Call<List<ProductHistorial>>, response: Response<List<ProductHistorial>>) {
             if (response.isSuccessful) {
                 val productos = response.body() ?: emptyList()
                 callback(productos) // Pasamos la lista a través del callback
@@ -145,7 +145,7 @@ fun obtenerProductosHistorial(callback: (List<Product>) -> Unit, email: String) 
             }
         }
 
-        override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+        override fun onFailure(call: Call<List<ProductHistorial>>, t: Throwable) {
             // Maneja la falla de la llamada aquí
             callback(emptyList())
         }

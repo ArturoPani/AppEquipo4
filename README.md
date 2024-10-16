@@ -1,5 +1,5 @@
 
-#Compra de Toallas Femeninas 📱🛒
+# Compra de Toallas Femeninas 📱🛒
 
 <img src="https://github.com/user-attachments/assets/cc83cfca-7b0c-4a38-9b1f-52a2274e0462" width="200" height="400">
 
@@ -73,8 +73,9 @@ Sigue estos pasos para clonar y configurar el proyecto en tu máquina local:
   ```kotlin
   private const val BASE_URL = "http://direccion-de-tu-servidor/"
 
-###5. Construye y Ejecuta la Aplicación:
+### 5. Construye y Ejecuta la Aplicación:
    - En Android Studio, haz clic en el botón "Run" o usa el atajo `Shift + F10`.
+     
      <img width="431" alt="image" src="https://github.com/user-attachments/assets/1fbdfe45-1720-4893-b3a5-d61798bc994f">
 
 ## Uso

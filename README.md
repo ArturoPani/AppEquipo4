@@ -1,7 +1,7 @@
 
 #Compra de Toallas Femeninas 📱🛒
 
-![image](https://github.com/user-attachments/assets/cc83cfca-7b0c-4a38-9b1f-52a2274e0462)
+<img src="https://github.com/user-attachments/assets/cc83cfca-7b0c-4a38-9b1f-52a2274e0462" width="400" height="300">
 ##Descripción
 
 Esta aplicación móvil para Android que facilita la compra de toallas femeninas de manera rápida y segura. La aplicación permite a los usuarios registrarse, iniciar sesión, explorar productos, agregar productos al carrito y realizar compras de manera eficiente. Además, ofrece secciones informativas sobre la fundación, historial de compras y opciones de empoderamiento económico.

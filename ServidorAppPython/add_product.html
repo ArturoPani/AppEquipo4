@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+    <link rel="stylesheet" href="static/css/add_product_styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="add-product-container">
+        <!-- Formulario para agregar producto -->
+        <div class="form-container">
+            <h1 class="form-title">Agregar Producto</h1>
+
+            <label for="product-name">Nombre del Producto:</label>
+            <input type="text" id="product-name" placeholder="Nombre" required>
+
+            <label for="description">Descripción:</label>
+            <textarea id="description" placeholder="Descripción" required></textarea>
+
+            <label for="price">Precio:</label>
+            <input type="number" id="price" placeholder="Precio" required>
+
+            <label for="stock-quantity">Cantidad en Stock:</label>
+            <input type="number" id="stock-quantity" placeholder="Cantidad en Stock" required>
+
+            <label for="category">Categoría:</label>
+            <select id="category" required>
+                <!-- Las categorías se cargarán dinámicamente desde el servidor -->
+                <option value="">Seleccionar categoría</option>
+                <option value="new">Agregar nueva categoría...</option>
+            </select>
+
+            <!-- Campo oculto para agregar una nueva categoría -->
+            <div id="new-category-container" style="display:none;">
+                <label for="new-category">Nombre de la nueva categoría:</label>
+                <input type="text" id="new-category" placeholder="Nueva Categoría">
+            </div>
+
+            <div class="file-upload-container">
+                <label class="file-upload-btn">
+                    <span class="material-icons">attach_file</span>
+                    Elegir archivo
+                    <input type="file" id="image" accept="image/png" required>
+                </label>
+                <span class="file-upload-label" id="file-name">No se ha seleccionado ningún archivo</span>
+            </div>
+
+            <button class="add-product-btn">
+                <span class="material-icons">add_circle</span>
+                Agregar Producto
+            </button>
+            
+            <!-- Botón de regresar -->
+            <button id="back-btn" class="back-btn">
+                <span class="material-icons">arrow_back</span>
+                Regresar
+            </button>
+
+        </div>
+
+        <!-- Vista previa del producto -->
+        <div class="preview-container">
+            <h2>Vista Previa del Producto</h2>
+            <div id="product-preview">
+                <!-- Aquí se mostrará la vista previa del producto -->
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/add_product.js"></script>
+    <script>
+        // Agregar funcionalidad al botón de regresar
+        document.getElementById('back-btn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

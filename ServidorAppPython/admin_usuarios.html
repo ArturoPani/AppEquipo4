@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Usuarios</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Importar la tipografía Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <!-- Estilo CSS -->
+    <link rel="stylesheet" href="static/css/admin_usuarios_styles.css">
+    <!-- Cargar jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+    <!-- Contenedor principal de administración de usuarios -->
+    <div class="admin-container">
+        <div class="left-panel">
+            <h1 class="admin-title">Usuarios</h1>
+            <!-- Botón de regreso al dashboard -->
+            <button id="back-btn" class="back-btn">
+                <span class="material-icons">arrow_back</span>
+                Regresar
+            </button>
+        </div>
+
+        <!-- Panel derecho con la tabla de usuarios -->
+        <div class="right-panel">
+            <div class="dashboard-grid">
+                <table class="table-usuarios" id="tabla-usuarios">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Pedidos Totales</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se cargarán los usuarios dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver pedidos de un usuario -->
+    <div class="overlay" id="modal-pedidos">
+        <div class="modal-content">
+            <h2>Pedidos del Usuario</h2>
+
+            <table class="table-pedidos" id="tabla-pedidos">
+                <thead>
+                    <tr>
+                        <th>Fecha del Pedido</th>
+                        <th>Estado</th>
+                        <th>Productos Comprados</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se cargarán los pedidos dinámicamente -->
+                </tbody>
+            </table>
+
+            <button id="close-modal" class="modal-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Script para la lógica de la página -->
+    <script src="static/js/admin_usuarios.js"></script>
+
+    <!-- Lógica para el botón de regreso -->
+    <script>
+        document.getElementById('back-btn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

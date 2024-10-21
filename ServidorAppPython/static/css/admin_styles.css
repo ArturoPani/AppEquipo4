@@ -1,0 +1,139 @@
+/* Importar la tipografía Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #FFB74D, #FF8A65, #FF7043);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    margin: 0;
+}
+
+/* Animación para el fondo degradado */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Contenedor principal del admin panel */
+.admin-container {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    justify-content: space-between;
+}
+
+/* Panel izquierdo con el logo y título */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-title {
+    font-size: 160px;
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+}
+
+/* Panel derecho con los botones */
+.right-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.dashboard-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px; /* Añadir padding para separar el contenido del borde */
+}
+
+.dashboard-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-btn img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+/* Aumentar el tamaño de los iconos de Material Icons */
+.dashboard-btn .material-icons {
+    font-size: 60px; /* Ajusta este valor según el tamaño que prefieras */
+    margin-bottom: 15px;
+    color: #FF7043; /* Mantén el color si lo deseas */
+}
+
+
+.dashboard-btn p {
+    font-size: 18px;
+    font-weight: 400;
+    color: #FF7043;
+    text-align: center; /* Centrar el texto */
+    max-width: 80%; /* Limitar el ancho del texto */
+    word-wrap: break-word; /* Permitir que el texto se divida en varias líneas */
+    margin: 0; /* Quitar márgenes extra */
+}
+
+/* Advertencia de pedidos pendientes */
+.warning {
+    color: yellow;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+/* Estilo para resaltar el botón cuando hay pedidos pendientes */
+#admin-pedidos-container {
+    transition: border 0.3s ease;
+}
+
+#admin-pedidos-container.resaltar {
+    border: 2px solid red;
+}

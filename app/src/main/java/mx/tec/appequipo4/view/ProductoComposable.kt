@@ -56,6 +56,8 @@ fun ProductoComposable(product: Product, onClick: () -> Unit) {
             // Imagen del producto
             println("product.imageUrl: ${product.image_route}")
 
+
+            //igual aquí se concatena
             val imageUrl = "http://10.0.2.2:5000/static/images/${product.image_route}.png"
             Image(//producto.image_route
                 painter = rememberAsyncImagePainter(model = imageUrl),

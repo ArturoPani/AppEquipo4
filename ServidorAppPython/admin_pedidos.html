@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Pedidos</title>
+    <link rel="stylesheet" href="static\css\admin_pedidos_styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Panel izquierdo con el título -->
+        <div class="left-panel">
+            <h1 class="admin-title">Pedidos</h1>
+
+            <!-- Botón de regreso -->
+            <button id="back-btn" class="back-btn">
+                <span class="material-icons">arrow_back</span>
+                Regresar
+            </button>
+        </div>
+
+        <!-- Panel derecho con la tabla de pedidos -->
+        <div class="right-panel">
+            <!-- Contenedor de la tabla de pedidos -->
+            <div class="dashboard-grid">
+                <!-- Tabla para mostrar pedidos -->
+                <table class="table-pedidos" id="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Método de Pago</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los pedidos se cargarán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles de un pedido -->
+    <div class="overlay"></div>
+    <div class="modal">
+        <h2>Detalles del Pedido</h2>
+
+        <label for="detalle-cliente">Cliente:</label>
+        <input type="text" id="detalle-cliente" disabled>
+
+        <label for="detalle-fecha">Fecha:</label>
+        <input type="text" id="detalle-fecha" disabled>
+
+        <label for="detalle-total">Total:</label>
+        <input type="text" id="detalle-total" disabled>
+
+        <label for="detalle-metodo">Método de Pago:</label>
+        <input type="text" id="detalle-metodo" disabled>
+
+        <h3>Productos:</h3>
+        <div id="detalle-productos">
+            <!-- Aquí se mostrarán los productos del pedido -->
+        </div>
+
+        <button id="close-modal" class="modal-btn">Cerrar</button>
+    </div>
+
+    <script src="static/js/admin_pedidos.js"></script>
+
+    <script>
+        // Lógica para el botón de regreso
+        document.getElementById('back-btn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

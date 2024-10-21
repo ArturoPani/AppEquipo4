@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Para incluir el título arriba */
+    justify-content: flex-start; /* Alinear desde el principio */
+    align-items: center;
+    background: linear-gradient(135deg, #FFB74D, #FF8A65, #FF7043);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Animación para el fondo degradado */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Título centrado */
+h1 {
+    font-size: 48px;
+    color: white;
+    text-align: center;
+    margin: 20px 0; /* Espacio arriba y abajo del título */
+}
+
+/* Contenedor principal del admin panel */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    padding-top: 20px;
+}
+
+/* Contenedor para las estadísticas */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ahora 3 columnas */
+    grid-gap: 20px; /* Ajustado para reducir espacio entre los elementos */
+    justify-items: center;
+    width: 100%;
+    padding: 20px 0; /* Espaciado para más orden */
+}
+
+/* Estilo para cada tarjeta de estadísticas */
+.stat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+}
+
+/* Botón de regresar */
+.back-btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #FF7043;
+    border: none;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover {
+    background-color: #FF8A65;
+}
+
+.back-btn .material-icons {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.chart-container {
+    width: 80%;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

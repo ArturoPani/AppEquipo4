@@ -67,6 +67,8 @@ fun ProductoHistorialComposable(product: ProductHistorial, onClick: () -> Unit) 
                 contentScale = ContentScale.Crop
             )*/
 
+
+            //aqui cargamos la imagen del producto y se concatena con su ruta
             val imageUrl = "http://10.0.2.2:5000/static/images/${product.image_route}.png"
             Image(//producto.image_route
                 painter = rememberAsyncImagePainter(model = imageUrl),

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Dashboard</title>
+    <!-- Vincular el archivo CSS -->
+    <link rel="stylesheet" href="static/css/product_dashboard_styles.css">
+    <!-- Cargar Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="product-dashboard-container">
+        <!-- Panel izquierdo con el título y botones -->
+        <div class="left-panel">
+            <h1 class="product-dashboard-title">Product Dashboard</h1>
+            <button id="add-product-btn" class="add-product-btn">
+                <span class="material-icons">add</span>
+                Agregar Producto
+            </button>
+            <button id="back-btn" class="back-btn">
+                <span class="material-icons">arrow_back</span>
+                Regresar
+            </button>
+        </div>
+
+        <!-- Panel derecho con la barra de búsqueda y lista de productos -->
+        <div class="right-panel">
+            <div class="search-container">
+                <span class="material-icons search-icon">search</span>
+                <input type="text" class="search-bar" id="search-bar" placeholder="Buscar por nombre...">
+            </div>
+            <div class="product-list" id="product-list">
+                <!-- Aquí se cargarán los productos dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Vincular el archivo de JavaScript -->
+    <script src="static/js/product_dashboard.js"></script>
+
+    <!-- Modal para editar producto -->
+    <div class="overlay"></div>
+    <div class="modal">
+        <h2>Editar Producto</h2>
+
+        <label for="edit-name">Nombre:</label>
+        <input type="text" id="edit-name">
+        
+        <label for="edit-description">Descripción:</label>
+        <textarea id="edit-description"></textarea>
+
+        <label for="edit-price">Precio:</label>
+        <input type="number" id="edit-price">
+        
+        <label for="edit-stock">Cantidad en Stock:</label>
+        <input type="number" id="edit-stock">
+
+        <!-- Campo para editar la imagen del producto -->
+        <label for="edit-image">Cambiar Imagen:</label>
+        <input type="file" id="edit-image" accept="image/png">
+
+        <!-- Vista previa de la imagen -->
+        <div class="image-preview" id="product-preview">
+            <img src="" alt="Vista previa de la imagen">
+        </div>
+
+        <button id="save-btn" class="modal-btn">Guardar</button>
+        <button id="cancel-btn" class="modal-btn">Cancelar</button>
+    </div>
+
+    <script>
+        // Agregar funcionalidad al botón de regresar
+        document.getElementById('back-btn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

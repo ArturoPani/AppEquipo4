@@ -1,0 +1,100 @@
+/* Importar la tipografía Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #FFB74D, #FF8A65, #FF7043);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    margin: 0;
+}
+
+/* Animación para el fondo degradado */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Estilo para el contenedor del título */
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el título "Zazil Admin Tool" */
+.admin-title {
+    font-size: 70px;
+    color: white;
+    font-weight: 300;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Contenedor del formulario de inicio de sesión */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Caja de inicio de sesión */
+.login-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    
+}
+
+.login-box h2 {
+    margin-bottom: 10px;
+    color: #FF7043;
+    font-weight: 500;
+}
+
+.login-box p {
+    font-weight: bold;
+}
+/* Estilos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.btn-primary {
+    background-color: #FF7043;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #FF5722;
+}

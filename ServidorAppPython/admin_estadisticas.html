@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Estadísticas</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/admin_estadisticas_styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Título de la página -->
+        <h1>Estadísticas</h1>
+
+        <!-- Contenedor de estadísticas -->
+        <div class="stats-container">
+            <div class="stat-card" id="ventas-totales">Ventas Totales: $0</div>
+            <div class="stat-card" id="productos-vendidos">Productos Vendidos: 0</div>
+            <div class="stat-card" id="producto-mas-vendido">Producto Más Vendido: -</div>
+            <div class="stat-card" id="cliente-mas-pedidos">Cliente con Más Pedidos: -</div>
+            <div class="stat-card" id="productos-por-categoria">Productos por Categoría: -</div>
+            <div class="stat-card" id="usuarios-registrados">Usuarios Registrados por Mes: -</div>        
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="ventasTotalesChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="productosVendidosChart"></canvas>
+        </div>
+
+        <!-- Botón para regresar -->
+        <button class="back-btn" onclick="window.location.href='admin_dashboard.html'">
+            <span class="material-icons">arrow_back</span>
+            Regresar
+        </button>
+    </div>
+
+    <script src="static/js/admin_estadisticas.js"></script>
+</body>
+</html>

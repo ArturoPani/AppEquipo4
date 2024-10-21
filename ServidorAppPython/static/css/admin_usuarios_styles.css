@@ -1,0 +1,198 @@
+/* Importar la tipografía Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #FFB74D, #FF8A65, #FF7043);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    margin: 0;
+}
+
+/* Animación para el fondo degradado */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Contenedor principal de administración de usuarios */
+.admin-container {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    justify-content: space-between;
+}
+
+/* Panel izquierdo con el logo y título */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    text-align: center;
+}
+
+.admin-title {
+    font-size: 70px;
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+}
+
+.back-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #FF8A65;
+}
+
+/* Panel derecho con la tabla de usuarios */
+.right-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.table-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-usuarios th, .table-usuarios td {
+    padding: 15px;
+    text-align: left;
+    color: #FF7043;
+}
+
+.table-usuarios th {
+    background-color: #FF8A65;
+    color: white;
+}
+
+.table-usuarios tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-usuarios tr:hover {
+    background-color: #ffe0b2;
+}
+
+/* Botón de ver pedidos */
+.ver-pedidos-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ver-pedidos-btn:hover {
+    background-color: #FF8A65;
+}
+
+/* Modal de pedidos del usuario */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    text-align: left;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #FF7043;
+}
+
+.table-pedidos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-pedidos th, .table-pedidos td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table-pedidos th {
+    background-color: #ff5722;
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.table-pedidos tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-pedidos tr:hover {
+    background-color: #ffe0b2;
+}
+
+.modal-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-btn:hover {
+    background-color: #FF8A65;
+}

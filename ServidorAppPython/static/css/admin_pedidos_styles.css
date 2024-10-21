@@ -1,0 +1,308 @@
+/* Importar la tipografía Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #FFB74D, #FF8A65, #FF7043);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    margin: 0;
+}
+
+/* Animación para el fondo degradado */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Contenedor principal */
+.admin-container {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    justify-content: space-between;
+}
+
+/* Panel izquierdo con el título */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    text-align: center;
+}
+
+.admin-title {
+    font-size: 80px;
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+}
+
+/* Panel derecho para la tabla de pedidos */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* Estilo de la tabla de pedidos */
+.table-pedidos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-pedidos th, .table-pedidos td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-pedidos th {
+    background-color: #FF7043;
+    color: white;
+    font-size: 18px;
+}
+
+.table-pedidos tr:hover {
+    background-color: rgba(255, 112, 67, 0.1);
+}
+
+/* Filtros */
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.filter-container label {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.filter-container select,
+.filter-container input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.filter-container button {
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 18px;
+}
+
+.filter-container button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones de acciones en la tabla */
+.table-pedidos .action-btn {
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.table-pedidos .action-btn:hover {
+    background-color: #FF8A65;
+}
+
+/* Estilo del modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 400px;
+    display: none;
+}
+
+.modal h2 {
+    font-size: 24px;
+    color: #FF7043;
+    margin-bottom: 20px;
+}
+
+.modal label {
+    font-size: 16px;
+    color: #333;
+}
+
+.modal input,
+.modal textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.modal .modal-btn {
+    padding: 10px 20px;
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal .modal-btn:hover {
+    background-color: #FF8A65;
+}
+
+/* Vista previa de productos dentro del modal */
+.modal #detalle-productos {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.modal #detalle-productos img {
+    max-width: 60px;
+    max-height: 60px;
+    margin-right: 10px;
+}
+
+/* Estilo del botón de regresar */
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #FF7043;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px; /* Espacio entre botones */
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn .material-icons {
+    margin-right: 8px;
+    font-size: 24px;
+}
+
+/* Alerts */
+
+/* Estilos generales de las alertas */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    display: block;
+    position: fixed; /* Posición fija */
+    top: 50%; /* Centrado verticalmente */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste para centrar */
+    z-index: 9999; /* Asegura que esté al frente */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Estilo de éxito */
+.alert-success {
+    background-color: #4caf50;
+    border-left: 5px solid #2e7d32;
+}
+
+/* Estilo de error */
+.alert-error {
+    background-color: #f44336;
+    border-left: 5px solid #d32f2f;
+}
+
+/* Estilo de advertencia */
+.alert-warning {
+    background-color: #ff9800;
+    border-left: 5px solid #f57c00;
+}
+
+/* Estilo de información */
+.alert-info {
+    background-color: #2196f3;
+    border-left: 5px solid #1976d2;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%); /* Animación desde un poco más arriba */
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.alert {
+    animation: fadeIn 0.5s ease-in-out;
+}
+

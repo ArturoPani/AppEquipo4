@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Importar la tipografía Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <!-- Estilo CSS -->
+    <link rel="stylesheet" href="static/css/admin_styles.css">
+    <!-- Cargar jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <!-- Contenedor principal del admin panel -->
+    <div class="admin-container">
+        <!-- Sección del logo y el título a la izquierda -->
+        <div class="left-panel">
+            <h1 class="admin-title">Admin <br> Panel</h1>
+        </div>
+
+        <!-- Sección de los botones a la derecha -->
+        <div class="right-panel">
+            <div class="dashboard-grid">
+                <div class="dashboard-btn" onclick="administrarProductos()">
+                    <span class="material-icons">inventory_2</span> <!-- Icono de Material Icons -->
+                    <p>Administrar Productos</p>
+                </div>
+                <div class="dashboard-btn" onclick="administrarUsuarios()">
+                    <span class="material-icons">group</span> <!-- Icono de Material Icons -->
+                    <p>Administrar Usuarios</p>
+                </div>
+                <div class="dashboard-btn" id="admin-pedidos-container" onclick="administrarPedidos()">
+                    <span class="material-icons">list_alt</span> <!-- Icono de Material Icons -->
+                    <p>Administrar Pedidos</p>
+                    <!-- Indicador de pedidos pendientes -->
+                    <span id="pedidoPendiente" style="display:none; color:red; font-weight:bold;">Pedidos Pendientes</span>
+                </div>                
+                <div class="dashboard-btn" onclick="verEstadisticas()">
+                    <span class="material-icons">bar_chart</span> <!-- Icono de Material Icons -->
+                    <p>Ver Estadísticas</p>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para la lógica -->
+    <script src="static/js/admin_dashboard.js"></script>
+</body>
+</html>

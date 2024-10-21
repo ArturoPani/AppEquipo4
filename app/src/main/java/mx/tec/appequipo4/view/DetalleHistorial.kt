@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.launch
 import mx.tec.appequipo4.R
 import mx.tec.appequipo4.viewModel.UsuarioViewModel
@@ -69,6 +70,8 @@ fun DetalleHistorialScreen(productId: String, viewModel: UsuarioViewModel, navCo
             } ?: 0 // Manejo de ruta nula o recurso no encontrado
 
         }
+
+        val imageUrl = "http://10.0.2.2:5000/static/images/${producto?.image_route}.png"
         val snackbarHostState = remember { SnackbarHostState() }
         val coroutineScope = rememberCoroutineScope() // Necesario para mostrar el Snackbar
 
@@ -86,13 +89,10 @@ fun DetalleHistorialScreen(productId: String, viewModel: UsuarioViewModel, navCo
                     Spacer(modifier = Modifier.height(8.dp))
 
 
-                    Image(
-                        painter = painterResource(id = imageResourceId),
+                    Image(//producto.image_route
+                        painter = rememberAsyncImagePainter(model = imageUrl),
                         contentDescription = null,
-                        modifier = Modifier
-                            .weight(1f)
-                            .padding(8.dp),
-                        contentScale = ContentScale.Crop
+                        modifier = Modifier.size(128.dp)
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))

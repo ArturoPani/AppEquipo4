@@ -1,0 +1,230 @@
+/* Importar la tipografía Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Estilo general */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #FFB74D, #FF8A65, #FF7043);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Animación para el fondo degradado */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Contenedor principal */
+.add-product-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-height: 90vh;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Formulario de producto */
+.form-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    /* Adjust height settings */
+    height: auto; /* Ensure height auto expands */
+    flex-grow: 1; /* Allow it to grow as needed */
+}
+
+
+/* Título del formulario */
+.form-title {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* Estilo de las etiquetas y campos del formulario */
+label {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px; /* Sets a reasonable minimum height */
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    resize: vertical; /* Allows resizing the textarea vertically */
+    overflow-y: auto; /* Allows scroll if content overflows */
+}
+
+/* Contenedor para subir archivos */
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.file-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #FF7043;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-upload-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.file-upload-btn input[type="file"] {
+    display: none;
+}
+
+.file-upload-btn .material-icons {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.file-upload-label {
+    margin-left: 10px;
+    color: white;
+    font-size: 16px;
+}
+
+/* Botón de agregar producto */
+.add-product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #FF7043;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 18px;
+}
+
+.add-product-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.add-product-btn .material-icons {
+    margin-right: 8px;
+    font-size: 24px;
+}
+
+/* Contenedor de la vista previa del producto */
+.preview-container {
+    width: 40%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.preview-container h2 {
+    font-size: 24px;
+    color: #FF7043;
+    margin-bottom: 20px;
+}
+
+#product-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 200px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#product-preview img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 12px;
+}
+
+#product-preview h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #FF7043;
+}
+
+#product-preview p {
+    font-size: 16px;
+    color: #666;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Estilo del botón de regresar */
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #FF7043;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px; /* Espacio entre botones */
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn .material-icons {
+    margin-right: 8px;
+    font-size: 24px;
+}
+
